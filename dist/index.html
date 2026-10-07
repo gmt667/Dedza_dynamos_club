@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The digital home of Goshen City Dedza Dynamos — fixtures, results, stories and the Yellow Boys' journey.">
+  <meta name="theme-color" content="#f6c900">
+  <title>Dedza Dynamos | The Yellow Boys</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="score-ticker" aria-label="Latest club update">
+    <span class="ticker-label">Latest</span>
+    <div class="ticker-copy"><strong>Castel Cup Final</strong><span>Big Bullets 2–1 Dedza Dynamos</span><span class="ticker-status">FT</span></div>
+    <a href="#matches">Match centre <span aria-hidden="true">→</span></a>
+  </div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Dedza Dynamos home">
+      <span class="brand-mark" aria-hidden="true"><span>D</span><span>D</span></span>
+      <span class="brand-name">Dedza<br>Dynamos</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#news">News</a><a href="#matches">Matches</a><a href="#team">Team</a><a href="#club">Club</a><a href="#supporters">Supporters</a>
+    </nav>
+    <div class="header-actions">
+      <a class="pill-link" href="#supporters">Join the Yellow Boys</a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation"><span></span><span></span></button>
+    </div>
+    <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation">
+      <a href="#news">News</a><a href="#matches">Matches</a><a href="#team">Team</a><a href="#club">Club</a><a href="#supporters">Supporters</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media">
+        <img src="assets/dedza-action.jpg" alt="Dedza Dynamos players competing during the cup campaign">
+      </div>
+      <div class="hero-shade"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span></span> Goshen City Dedza Dynamos</p>
+        <h1 id="hero-title">Built in Dedza.<br><em>Ready for more.</em></h1>
+        <p class="hero-summary">From regional champions to Malawi's biggest stage. Follow the story of the Yellow Boys.</p>
+        <div class="hero-actions">
+          <a class="button button-yellow" href="#news">Explore the story <span>↗</span></a>
+          <button class="button button-ghost" type="button" data-open-story>Watch club story <span class="play-icon">▶</span></button>
+        </div>
+      </div>
+      <div class="hero-stat" aria-label="Club milestones">
+        <div><strong>2017</strong><span>Founded</span></div>
+        <div><strong>2022</strong><span>Top flight debut</span></div>
+        <div><strong>2026</strong><span>First cup final</span></div>
+      </div>
+      <a class="scroll-cue" href="#matches">Scroll to explore <span>↓</span></a>
+    </section>
+
+    <section class="match-zone section-pad" id="matches" aria-labelledby="matches-title">
+      <div class="section-heading split-heading">
+        <div><p class="kicker">Match centre</p><h2 id="matches-title">The next ninety</h2></div>
+        <div class="match-tabs" role="tablist" aria-label="Match type">
+          <button class="active" type="button" data-match-tab="fixtures" role="tab" aria-selected="true">Fixtures</button>
+          <button type="button" data-match-tab="results" role="tab" aria-selected="false">Results</button>
+        </div>
+      </div>
+      <div class="match-shell">
+        <article class="featured-match" id="featured-match" aria-live="polite"></article>
+        <div class="match-list-wrap">
+          <div class="match-list-head"><span id="match-list-label">Upcoming</span><span>2026 season</span></div>
+          <div class="match-list" id="match-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="news-section section-pad" id="news" aria-labelledby="news-title">
+      <div class="section-heading split-heading">
+        <div><p class="kicker">Latest from Dedza</p><h2 id="news-title">Stories with a pulse</h2></div>
+        <div class="filter-row" aria-label="Filter stories">
+          <button class="active" type="button" data-filter="all">All</button><button type="button" data-filter="match">Matches</button><button type="button" data-filter="club">Club</button><button type="button" data-filter="history">History</button>
+        </div>
+      </div>
+      <div class="news-grid" id="news-grid">
+        <article class="story story-featured" data-category="history match">
+          <div class="story-image"><img src="assets/dedza-cup-run.jpg" alt="Dedza Dynamos in yellow during their historic cup campaign"><span class="story-tag">Club history</span></div>
+          <div class="story-copy"><p class="story-date">19 February 2026 · 6 min read</p><h3>The road to a first Castel Cup final</h3><p>A gritty campaign, a stoppage-time equaliser and the shootout that carried Dedza onto the national stage.</p><button type="button" data-article="cup-run">Read the story <span>→</span></button></div>
+        </article>
+        <article class="story" data-category="club">
+          <div class="story-graphic yellow"><span>01</span><strong>New<br>chapter</strong></div>
+          <div class="story-copy"><p class="story-date">5 October 2026 · Club</p><h3>A new board for a new era</h3><p>Reported leadership changes mark the next chapter in the club's growth.</p><button type="button" data-article="board">Read more <span>→</span></button></div>
+        </article>
+        <article class="story" data-category="match">
+          <div class="story-graphic dark"><span>FT</span><strong>2–1</strong><small>Castel Cup final</small></div>
+          <div class="story-copy"><p class="story-date">21 February 2026 · Match report</p><h3>Dedza finish as cup runners-up</h3><p>Chikondi Mbeta scored late as the Yellow Boys contested their first final.</p><button type="button" data-article="final">Match report <span>→</span></button></div>
+        </article>
+      </div>
+      <div class="section-footer"><button class="text-link" type="button" data-show-all>View all stories <span>↗</span></button></div>
+    </section>
+
+    <section class="identity-section" id="club" aria-labelledby="identity-title">
+      <div class="identity-copy section-pad">
+        <p class="kicker light">Our identity</p>
+        <h2 id="identity-title">Black. Yellow.<br><em>Unmistakably Dedza.</em></h2>
+        <p>Born in 2017 and promoted to Malawi's elite league within four years, Dedza Dynamos carries the energy of a district that believes in its own.</p>
+        <a class="button button-outline" href="#timeline">Discover our history <span>→</span></a>
+      </div>
+      <div class="identity-visual">
+        <div class="big-word">YELLOW<br>BOYS</div>
+        <div class="crest-large"><span>D</span><span>D</span><small>2017</small></div>
+      </div>
+    </section>
+
+    <section class="timeline-section section-pad" id="timeline" aria-labelledby="timeline-title">
+      <div class="section-heading"><p class="kicker">The journey</p><h2 id="timeline-title">Nine years. One rising story.</h2></div>
+      <div class="timeline" role="list">
+        <article class="timeline-item active" role="listitem" tabindex="0"><span>2017</span><h3>The beginning</h3><p>Dedza Dynamos Football Club is founded.</p></article>
+        <article class="timeline-item" role="listitem" tabindex="0"><span>2021</span><h3>Regional champions</h3><p>Central Region title and promotion secured.</p></article>
+        <article class="timeline-item" role="listitem" tabindex="0"><span>2022</span><h3>Top-flight debut</h3><p>The club finishes ninth in its first elite season.</p></article>
+        <article class="timeline-item" role="listitem" tabindex="0"><span>2023</span><h3>A golden boot</h3><p>Clement Nyondo leads the league's scoring.</p></article>
+        <article class="timeline-item" role="listitem" tabindex="0"><span>2026</span><h3>National stage</h3><p>A first Castel Challenge Cup final.</p></article>
+      </div>
+    </section>
+
+    <section class="squad-section section-pad" id="team" aria-labelledby="team-title">
+      <div class="section-heading split-heading">
+        <div><p class="kicker">People in the record</p><h2 id="team-title">Players who made moments</h2></div>
+        <p class="context-note">Historical contributors — not a current squad list.</p>
+      </div>
+      <div class="player-grid">
+        <article class="player-card"><span class="player-number">09</span><div class="player-silhouette"></div><div><p>2023 Golden Boot</p><h3>Clement<br>Nyondo</h3></div></article>
+        <article class="player-card yellow-card"><span class="player-number">—</span><div class="player-silhouette"></div><div><p>Semifinal equaliser</p><h3>Gift<br>Magola</h3></div></article>
+        <article class="player-card"><span class="player-number">—</span><div class="player-silhouette"></div><div><p>2026 final scorer</p><h3>Chikondi<br>Mbeta</h3></div></article>
+      </div>
+      <p class="verification-note">Current squad profiles will be added after club confirmation.</p>
+    </section>
+
+    <section class="supporter-section" id="supporters" aria-labelledby="supporter-title">
+      <div class="supporter-photo"><img src="assets/dedza-team-history.jpg" alt="Historical Dedza Dynamos team celebrating their regional achievement"></div>
+      <div class="supporter-content">
+        <p class="kicker light">Our people</p><h2 id="supporter-title">Wherever you are,<br><em>stand with Dedza.</em></h2>
+        <p>Get fixtures, results and the latest verified club stories in one place. An official WhatsApp channel will be linked here once confirmed by the club.</p>
+        <button class="button button-yellow" type="button" data-whatsapp>WhatsApp updates <span>→</span></button>
+        <small>No unverified invite links. No invented follower counts.</small>
+      </div>
+    </section>
+
+    <section class="newsletter section-pad" aria-labelledby="newsletter-title">
+      <div><p class="kicker">Stay close</p><h2 id="newsletter-title">News from the Yellow Boys.</h2></div>
+      <form id="newsletter-form"><label class="sr-only" for="email">Email address</label><input id="email" name="email" type="email" placeholder="Your email address" required><button type="submit">Subscribe <span>→</span></button><p class="form-status" role="status"></p></form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><span class="brand-mark"><span>D</span><span>D</span></span><div><strong>Dedza Dynamos</strong><small>The Yellow Boys · Dedza, Malawi</small></div></div>
+    <div class="footer-links"><div><strong>Football</strong><a href="#matches">Fixtures</a><a href="#matches">Results</a><a href="#team">Players</a></div><div><strong>Club</strong><a href="#club">History</a><a href="#club">Leadership</a><a href="#supporters">Supporters</a></div><div><strong>Follow</strong><span>Official channels pending confirmation</span></div></div>
+    <div class="footer-bottom"><span>© 2026 Dedza Dynamos concept</span><span>Designed &amp; built by AstraMind Labs</span><button type="button" data-back-top>Back to top ↑</button></div>
+  </footer>
+
+  <dialog class="content-dialog" id="content-dialog"><button class="dialog-close" type="button" aria-label="Close">×</button><div id="dialog-content"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
