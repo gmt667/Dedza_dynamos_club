@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dedza-dynamos-club.mwalwandadesire5.chatgpt.site/sitemap.xml
