@@ -1,1 +1,487 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Official Dedza Dynamos shop."><title>Shop | Dedza Dynamos</title><link rel="icon" href="/assets/brand/dedza-dynamos-crest.png"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/brand.css"><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></head><body><div class="utility"><span>Goshen City Dedza Dynamos</span><div class="utility-links"><a href="/supporters/">Fan support</a></div></div><header class="site-head"><a class="brand" href="/"><span class="mark"><img src="/assets/brand/dedza-dynamos-crest.png" alt=""></span><span class="brand-copy"><strong>Dedza<br>Dynamos</strong><small>The Yellow Boys</small></span></a><nav class="main-nav" aria-label="Main"></nav><div class="head-actions"><button class="search-button" data-search aria-label="Search"><svg class="icon"><use href="/assets/icons.svg#search"></use></svg></button><button class="menu-button" aria-label="Open menu" aria-expanded="false"><svg class="icon"><use href="/assets/icons.svg#menu"></use></svg></button></div></header><nav class="mobile-nav" aria-label="Mobile"></nav><main><section class="page-hero"><span class="crumbs"><a href="/">Home</a> / Shop</span><div class="page-hero-content"><p class="eyebrow">Official merchandise</p><h1>The club shop</h1><p>Official Yellow Boys merchandise, when the club launches its verified sales channel.</p></div></section><section class="shell"><div class="notice"><strong>Coming soon.</strong> The club has not yet confirmed an official online shop. This page prevents unverified merchandise links and will be activated with approved products and payments.</div><a class="button yellow" href="/supporters/">Join the supporters</a></section></main><footer class="site-footer"><div class="footer-bottom"><span>© 2026 Dedza Dynamos concept</span><span>AstraMind Labs</span></div></footer><div class="site-search"><button class="search-close" aria-label="Close search">×</button><label for="site-search">Search</label><input id="site-search" type="search"><div class="search-results"></div></div><div class="toast"></div><script src="/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Official Dedza Dynamos FC merchandise shop. Buy official home jerseys, lifestyle hoodies, pro training pants, and full team outfits.">
+  <title>Official Club Shop | Dedza Dynamos</title>
+  <link rel="icon" href="/assets/brand/dedza-dynamos-crest.png">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="/shop.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="utility">
+    <span>Goshen City Dedza Dynamos · Official Merchandise Store</span>
+    <div class="utility-links">
+      <a href="/tickets/">Match Tickets</a>
+      <a href="/supporters/">Fan Support</a>
+    </div>
+  </div>
+
+  <header class="site-head">
+    <a class="brand" href="/">
+      <span class="mark"><img src="/assets/brand/dedza-dynamos-crest.png" alt="Dedza Dynamos crest"></span>
+      <span class="brand-copy"><strong>Dedza<br>Dynamos</strong><small>The Yellow Boys</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Main"></nav>
+    <div class="head-actions">
+      <button class="search-button" data-search aria-label="Search">
+        <svg class="icon"><use href="/assets/icons.svg#search"></use></svg>
+      </button>
+      <button class="cart-trigger-btn" id="open-cart-btn" aria-label="Open Shopping Bag">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" x2="21" y1="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Bag</span>
+        <span class="cart-badge-count" id="header-cart-count">0</span>
+      </button>
+      <button class="menu-button" aria-label="Open menu" aria-expanded="false">
+        <svg class="icon"><use href="/assets/icons.svg#menu"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" aria-label="Mobile"></nav>
+
+  <main>
+    <div class="shop-shell">
+      <!-- SHOP HERO -->
+      <section class="shop-hero">
+        <div class="shop-hero-content">
+          <span class="shop-badge">Official Club Merchandise · 2026/27 Collection</span>
+          <h1>Wear The <span>Yellow Boys</span> Pride</h1>
+          <p>Official match jerseys, premium heavyweight hoodies, performance training pants, and presentation outfits. Authentic club apparel direct to Dedza supporters worldwide.</p>
+          <div class="shop-hero-perks">
+            <div class="shop-perk">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>100% Authentic Club Crest</span>
+            </div>
+            <div class="shop-perk">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>Nationwide Delivery via Courier</span>
+            </div>
+            <div class="shop-perk">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Direct Club Support</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FILTER TABS & CART TRIGGER -->
+      <div class="shop-filters">
+        <div class="filter-tabs">
+          <button class="shop-tab-btn active" data-category="all">All Products</button>
+          <button class="shop-tab-btn" data-category="kits">Match Kits</button>
+          <button class="shop-tab-btn" data-category="hoodies">Hoodie Tops</button>
+          <button class="shop-tab-btn" data-category="pants">Pants &amp; Joggers</button>
+          <button class="shop-tab-btn" data-category="outfits">Tracksuit Outfits</button>
+        </div>
+        <button class="cart-trigger-btn" id="open-cart-btn-2">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" x2="21" y1="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span>View Bag</span> (<span id="filter-cart-count">0</span>)
+        </button>
+      </div>
+
+      <!-- PRODUCTS CATALOG -->
+      <section class="shop-grid" id="shop-products-grid">
+
+        <!-- PRODUCT 1: HOME JERSEY -->
+        <article class="product-card" data-cat="kits">
+          <div class="product-image-box">
+            <span class="product-tag">Official Kit · Home</span>
+            <img src="/assets/shop/jersey-home.jpg" alt="Official Dedza Dynamos 2026/27 Home Jersey" loading="lazy">
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Match Kit · 2026/27</span>
+            <h2 class="product-title">Official Home Jersey</h2>
+            <p class="product-desc">The iconic gold and navy strip worn by the Yellow Boys. Features high-definition embroidered lion crest, Goshen City front sponsor branding, and breathable aerodynamic weave.</p>
+            <div class="product-meta-row">
+              <div class="product-price"><small>MWK</small>35,000</div>
+              <span class="product-stock">In Stock · Stadium Dispatch</span>
+            </div>
+            <label class="size-selector-label">Select Size:</label>
+            <div class="size-options" data-product-sizes="1">
+              <button type="button" class="size-btn active" data-size="S">S</button>
+              <button type="button" class="size-btn" data-size="M">M</button>
+              <button type="button" class="size-btn" data-size="L">L</button>
+              <button type="button" class="size-btn" data-size="XL">XL</button>
+              <button type="button" class="size-btn" data-size="XXL">XXL</button>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(1, 'Official Home Jersey', 35000, '/assets/shop/jersey-home.jpg')">
+              <svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- PRODUCT 2: HOODIE TOP -->
+        <article class="product-card" data-cat="hoodies">
+          <div class="product-image-box">
+            <span class="product-tag">Streetwear Edition</span>
+            <img src="/assets/shop/hoodie-navy.jpg" alt="Dedza Dynamos Official Club Hoodie Top" loading="lazy">
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Club Streetwear · Fleece</span>
+            <h2 class="product-title">Official Lifestyle Hoodie Top</h2>
+            <p class="product-desc">Premium 380gsm heavyweight cotton fleece in deep midnight navy with golden-yellow hood lining, gold drawstrings, and embroidered lion crest. Finished with 'The Yellow Boys' signature detail.</p>
+            <div class="product-meta-row">
+              <div class="product-price"><small>MWK</small>48,000</div>
+              <span class="product-stock">In Stock · Popular</span>
+            </div>
+            <label class="size-selector-label">Select Size:</label>
+            <div class="size-options" data-product-sizes="2">
+              <button type="button" class="size-btn active" data-size="S">S</button>
+              <button type="button" class="size-btn" data-size="M">M</button>
+              <button type="button" class="size-btn" data-size="L">L</button>
+              <button type="button" class="size-btn" data-size="XL">XL</button>
+              <button type="button" class="size-btn" data-size="XXL">XXL</button>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(2, 'Lifestyle Club Hoodie Top', 48000, '/assets/shop/hoodie-navy.jpg')">
+              <svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- PRODUCT 3: TRACK PANTS -->
+        <article class="product-card" data-cat="pants">
+          <div class="product-image-box">
+            <span class="product-tag">Pro Training</span>
+            <img src="/assets/shop/pants-track.jpg" alt="Dedza Dynamos Official Athletic Track Pants" loading="lazy">
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Training Apparel · Joggers</span>
+            <h2 class="product-title">Pro Training Track Pants</h2>
+            <p class="product-desc">Athletic tapered joggers with golden-yellow side racing stripes, embroidered Dedza shield on thigh, zipped security pockets, and ankle zips for versatile warmups and casual wear.</p>
+            <div class="product-meta-row">
+              <div class="product-price"><small>MWK</small>32,000</div>
+              <span class="product-stock">In Stock</span>
+            </div>
+            <label class="size-selector-label">Select Size:</label>
+            <div class="size-options" data-product-sizes="3">
+              <button type="button" class="size-btn active" data-size="S">S</button>
+              <button type="button" class="size-btn" data-size="M">M</button>
+              <button type="button" class="size-btn" data-size="L">L</button>
+              <button type="button" class="size-btn" data-size="XL">XL</button>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(3, 'Pro Training Track Pants', 32000, '/assets/shop/pants-track.jpg')">
+              <svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- PRODUCT 4: FULL TRACKSUIT OUTFIT -->
+        <article class="product-card" data-cat="outfits">
+          <div class="product-image-box">
+            <span class="product-tag">Complete Outfit · 2-Piece</span>
+            <img src="/assets/shop/outfit-tracksuit.jpg" alt="Dedza Dynamos Complete Tracksuit Outfit" loading="lazy">
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Matchday Presentation Set</span>
+            <h2 class="product-title">Presentation Tracksuit Outfit</h2>
+            <p class="product-desc">The official team presentation suit. Includes full-zip stand-collar track jacket with raglan gold contrast sleeves plus matching athletic pants with dual embroidered club emblems.</p>
+            <div class="product-meta-row">
+              <div class="product-price"><small>MWK</small>75,000</div>
+              <span class="product-stock">Limited Edition Set</span>
+            </div>
+            <label class="size-selector-label">Select Size:</label>
+            <div class="size-options" data-product-sizes="4">
+              <button type="button" class="size-btn active" data-size="S">S</button>
+              <button type="button" class="size-btn" data-size="M">M</button>
+              <button type="button" class="size-btn" data-size="L">L</button>
+              <button type="button" class="size-btn" data-size="XL">XL</button>
+              <button type="button" class="size-btn" data-size="XXL">XXL</button>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(4, 'Presentation Tracksuit Outfit (2-Piece)', 75000, '/assets/shop/outfit-tracksuit.jpg')">
+              <svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add to Bag
+            </button>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- SUPPORT GUARANTEE BOX -->
+      <section class="support-card dark" style="border-radius:20px;padding:2.5rem;margin-top:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem">
+        <div>
+          <p class="eyebrow" style="color:var(--dd-gold)">Matchday Gear &amp; Support</p>
+          <h2 style="font-family:'Archivo Black';text-transform:uppercase;margin:.3rem 0;color:#fff">Need Ticket Passes For The Next Match?</h2>
+          <p style="color:#94a3b8;max-width:540px">Combine your club outfit with official match passes via Uthenga.co, Kwenda, or Machenji express gate ticketing.</p>
+        </div>
+        <a href="/tickets/" class="button yellow" style="font-weight:800;padding:1rem 2rem;border-radius:999px">Book Match Tickets →</a>
+      </section>
+    </div>
+  </main>
+
+  <!-- CART SLIDE-OVER DRAWER -->
+  <div class="cart-drawer-overlay" id="cart-drawer-overlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h2>Your Shopping Bag (<span id="cart-drawer-count">0</span>)</h2>
+        <button class="cart-close-btn" id="close-cart-btn" aria-label="Close Bag">✕</button>
+      </div>
+      <div class="cart-items-list" id="cart-items-container">
+        <p class="cart-empty-message">Your shopping bag is currently empty.<br>Browse the club collection above!</p>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span>Subtotal (MWK)</span>
+          <span class="cart-total-price" id="cart-subtotal">MWK 0</span>
+        </div>
+        <button class="checkout-btn" id="proceed-checkout-btn" disabled onclick="openCheckoutModal()">Proceed to Checkout →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="checkout-modal-overlay" id="checkout-modal-overlay">
+    <div class="checkout-modal">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <h2>Complete Your Order</h2>
+        <button class="cart-close-btn" onclick="closeCheckoutModal()">✕</button>
+      </div>
+      <p style="font-size:.85rem;color:#64748b;margin-top:.2rem">Orders are dispatched via nationwide courier or available for pickup at Dedza Stadium Club House.</p>
+
+      <form id="checkout-form" class="checkout-form" onsubmit="handleCheckoutSubmit(event)">
+        <div class="checkout-field">
+          <label>Full Name</label>
+          <input type="text" id="cust-name" required placeholder="e.g. Kondwani Phiri">
+        </div>
+
+        <div class="checkout-field">
+          <label>Phone Number (Mobile Money / WhatsApp)</label>
+          <input type="tel" id="cust-phone" required placeholder="e.g. +265 888 123 456">
+        </div>
+
+        <div class="checkout-field">
+          <label>Delivery / Pickup Town</label>
+          <select id="cust-town" required>
+            <option value="Dedza">Dedza (Club House Pickup - Free)</option>
+            <option value="Lilongwe">Lilongwe (Direct Courier - MWK 3,500)</option>
+            <option value="Blantyre">Blantyre (Direct Courier - MWK 4,500)</option>
+            <option value="Zomba">Zomba (Direct Courier - MWK 4,500)</option>
+            <option value="Mzuzu">Mzuzu (Direct Courier - MWK 5,500)</option>
+            <option value="Other">Other Malawi Districts</option>
+          </select>
+        </div>
+
+        <div class="checkout-field">
+          <label>Select Payment Method</label>
+          <div class="payment-channel-grid">
+            <div class="payment-pill selected" onclick="selectPayment(this, 'TNM Mpamba')">TNM Mpamba</div>
+            <div class="payment-pill" onclick="selectPayment(this, 'Airtel Money')">Airtel Money</div>
+            <div class="payment-pill" onclick="selectPayment(this, 'FDH 525 Banking')">FDH 525 Banking</div>
+            <div class="payment-pill" onclick="selectPayment(this, 'Pay on Pickup')">Cash at Club House</div>
+          </div>
+          <input type="hidden" id="cust-payment-method" value="TNM Mpamba">
+        </div>
+
+        <div style="background:#f8f9fa;border:1px solid #e2e8f0;border-radius:12px;padding:1rem;margin-top:.5rem">
+          <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.3rem">
+            <span>Items Total:</span>
+            <strong id="modal-items-total">MWK 0</strong>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:.85rem">
+            <span>Estimated Delivery:</span>
+            <span id="modal-delivery-fee" style="color:#16a34a;font-weight:700">Calculated at dispatch</span>
+          </div>
+        </div>
+
+        <button type="submit" class="checkout-btn" style="margin-top:1rem">Confirm Order &amp; Pay Now →</button>
+      </form>
+
+      <!-- SUCCESS BOX (Hidden by default) -->
+      <div id="checkout-success-view" class="order-success-box" style="display:none">
+        <div class="success-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 style="font-family:'Archivo Black';text-transform:uppercase;font-size:1.4rem">Order Received!</h3>
+        <p style="color:#475569;font-size:.9rem;margin-top:.4rem">Thank you for supporting Dedza Dynamos. Your order reference is:</p>
+        <div class="order-pill" id="generated-order-id">#DD-SHOP-7821</div>
+        <p style="font-size:.85rem;color:#64748b;line-height:1.5">A confirmation SMS has been queued for your number with payment and collection details. Show this reference at the club house or to your courier driver.</p>
+        <button class="checkout-btn" style="margin-top:1.5rem" onclick="closeCheckoutModal(true)">Back to Shop</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <span>© 2026 Goshen City Dedza Dynamos Football Club</span>
+      <span>Official Club Merchandise</span>
+    </div>
+  </footer>
+
+  <div class="site-search">
+    <button class="search-close" aria-label="Close search">×</button>
+    <label for="site-search">Search</label>
+    <input id="site-search" type="search">
+    <div class="search-results"></div>
+  </div>
+
+  <div class="toast"></div>
+
+  <script src="/app.js"></script>
+  <script>
+    // ── SHOPPING BAG STATE ──
+    let cart = [];
+    try {
+      cart = JSON.parse(localStorage.getItem('dd_cart') || '[]');
+    } catch(e) { cart = []; }
+
+    // ── SIZE SELECTION ──
+    document.querySelectorAll('.size-options').forEach(group => {
+      group.querySelectorAll('.size-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          group.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+    });
+
+    // ── CATEGORY FILTERING ──
+    document.querySelectorAll('.shop-tab-btn').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.shop-tab-btn').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const cat = tab.dataset.category;
+        document.querySelectorAll('#shop-products-grid .product-card').forEach(card => {
+          if (cat === 'all' || card.dataset.cat === cat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ── CART FUNCTIONS ──
+    function saveCart() {
+      localStorage.setItem('dd_cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function addToCart(id, title, price, img) {
+      const sizeGroup = document.querySelector(`[data-product-sizes="${id}"]`);
+      const size = sizeGroup ? (sizeGroup.querySelector('.size-btn.active')?.dataset.size || 'M') : 'Standard';
+      
+      const existing = cart.find(item => item.id === id && item.size === size);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id, title, price, img, size, qty: 1 });
+      }
+      saveCart();
+      if (typeof showToast === 'function') {
+        showToast(`Added ${title} (${size}) to Bag ✓`);
+      }
+      openCartDrawer();
+    }
+
+    function updateCartUI() {
+      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      document.getElementById('header-cart-count').textContent = totalCount;
+      document.getElementById('filter-cart-count').textContent = totalCount;
+      document.getElementById('cart-drawer-count').textContent = totalCount;
+      document.getElementById('cart-subtotal').textContent = 'MWK ' + totalPrice.toLocaleString();
+      document.getElementById('proceed-checkout-btn').disabled = cart.length === 0;
+
+      // Update basket icon in main app header if present
+      const bagBadge = document.querySelector('.basket-link strong');
+      if (bagBadge) bagBadge.textContent = totalCount;
+
+      const container = document.getElementById('cart-items-container');
+      if (cart.length === 0) {
+        container.innerHTML = '<p class="cart-empty-message">Your shopping bag is currently empty.<br>Browse the club collection above!</p>';
+        return;
+      }
+
+      container.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+          <img src="${item.img}" class="cart-item-img" alt="${item.title}">
+          <div class="cart-item-info">
+            <h3 class="cart-item-title">${item.title}</h3>
+            <div class="cart-item-meta">Size: <strong>${item.size}</strong> · MWK ${item.price.toLocaleString()}</div>
+            <div class="cart-item-bottom">
+              <div class="cart-qty-ctrl">
+                <button type="button" class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
+                <span class="qty-val">${item.qty}</span>
+                <button type="button" class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+              </div>
+              <button type="button" class="remove-btn" onclick="removeItem(${index})">Remove</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function changeQty(index, delta) {
+      if (!cart[index]) return;
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+    }
+
+    // ── DRAWER TOGGLES ──
+    const drawerOverlay = document.getElementById('cart-drawer-overlay');
+    function openCartDrawer() { drawerOverlay.classList.add('open'); }
+    function closeCartDrawer() { drawerOverlay.classList.remove('open'); }
+
+    document.getElementById('open-cart-btn')?.addEventListener('click', openCartDrawer);
+    document.getElementById('open-cart-btn-2')?.addEventListener('click', openCartDrawer);
+    document.getElementById('close-cart-btn')?.addEventListener('click', closeCartDrawer);
+    drawerOverlay.addEventListener('click', (e) => {
+      if (e.target === drawerOverlay) closeCartDrawer();
+    });
+
+    // ── CHECKOUT MODAL ──
+    const checkoutOverlay = document.getElementById('checkout-modal-overlay');
+    function openCheckoutModal() {
+      closeCartDrawer();
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      document.getElementById('modal-items-total').textContent = 'MWK ' + totalPrice.toLocaleString();
+      document.getElementById('checkout-form').style.display = 'flex';
+      document.getElementById('checkout-success-view').style.display = 'none';
+      checkoutOverlay.classList.add('open');
+    }
+    function closeCheckoutModal(resetCart = false) {
+      checkoutOverlay.classList.remove('open');
+      if (resetCart) {
+        cart = [];
+        saveCart();
+      }
+    }
+    checkoutOverlay.addEventListener('click', (e) => {
+      if (e.target === checkoutOverlay) closeCheckoutModal();
+    });
+
+    function selectPayment(el, method) {
+      document.querySelectorAll('.payment-pill').forEach(p => p.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('cust-payment-method').value = method;
+    }
+
+    function handleCheckoutSubmit(e) {
+      e.preventDefault();
+      const orderId = '#DD-SHOP-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('generated-order-id').textContent = orderId;
+      document.getElementById('checkout-form').style.display = 'none';
+      document.getElementById('checkout-success-view').style.display = 'block';
+    }
+
+    // Initial render
+    updateCartUI();
+  </script>
+</body>
+</html>
