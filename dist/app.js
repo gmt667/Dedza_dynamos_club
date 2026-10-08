@@ -100,13 +100,13 @@ if (searchOverlay) {
 
       <div class="search-quick-tags" id="search-quick-tags">
         <span class="quick-label">Popular:</span>
-        <button class="quick-pill" data-query="Next Match">⚡ Next Match</button>
-        <button class="quick-pill" data-query="Tickets">🎟️ Tickets</button>
-        <button class="quick-pill" data-query="Jersey">👕 Home Jersey</button>
-        <button class="quick-pill" data-query="MBC TV">📺 Watch Live TV</button>
-        <button class="quick-pill" data-query="Castel Cup">🍷 Castel Cup</button>
-        <button class="quick-pill" data-query="Standings">🏆 Standings</button>
-        <button class="quick-pill" data-query="Players">👥 Squad</button>
+        <button class="quick-pill" data-query="Next Match"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M13 2 3 14h8l-1 8 10-12h-8z"/></svg>Next Match</button>
+        <button class="quick-pill" data-query="Tickets"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2 2 2 2 0 0 1 0 4 2 2 0 0 0-2 2v2h18v-2a2 2 0 0 0-2-2 2 2 0 0 1 0-4 2 2 0 0 0 2-2V6H3z"/></svg>Tickets</button>
+        <button class="quick-pill" data-query="Jersey"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 3 4 3 4-3 5 4-3 5-2-1v10H8V11l-2 1-3-5z"/></svg>Home Jersey</button>
+        <button class="quick-pill" data-query="MBC TV"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="m9 3 3 3 3-3M9 11l6 2-6 2z"/></svg>Watch Live TV</button>
+        <button class="quick-pill" data-query="Castel Cup"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 3h12v4a6 6 0 0 1-12 0zM8 13h8M12 11v6M8 21h8"/><path d="M6 5H3v1a4 4 0 0 0 4 4M18 5h3v1a4 4 0 0 1-4 4"/></svg>Castel Cup</button>
+        <button class="quick-pill" data-query="Standings"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20V8"/></svg>Standings</button>
+        <button class="quick-pill" data-query="Players"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20a6 6 0 0 1 12 0M15 15a5 5 0 0 1 5 5"/></svg>Squad</button>
       </div>
 
       <div class="search-results-list" id="search-results-list" role="listbox"></div>
