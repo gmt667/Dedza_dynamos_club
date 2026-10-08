@@ -7,6 +7,7 @@ import { createReadStream, existsSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { extname, join, normalize, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { handleApiRequest } from './api.mjs';
 
 const PORT = 4174;
 const root = resolve(fileURLToPath(new URL('./admin-dist/', import.meta.url)));
@@ -26,8 +27,17 @@ const types = {
 // Allow fetching club assets (crest, images) from the public dist folder
 const publicAssets = resolve(fileURLToPath(new URL('./dist/', import.meta.url)));
 
-createServer((req, res) => {
-  const reqPath = decodeURIComponent((req.url || '/').split('?')[0]);
+createServer(async (req, res) => {
+  const urlObj = new URL(req.url || '/', `http://${req.headers.host || '127.0.0.1'}`);
+  const reqPath = decodeURIComponent(urlObj.pathname);
+  const query = Object.fromEntries(urlObj.searchParams);
+
+  // Handle live Database REST API
+  if (reqPath.startsWith('/api/')) {
+    const handled = await handleApiRequest(req, res, reqPath, query);
+    if (handled) return;
+  }
+
   const safe = normalize(reqPath).replace(/^[/\\]+/, '').replace(/^(\.\.[/\\])+/, '');
 
   // Serve from admin-dist first
