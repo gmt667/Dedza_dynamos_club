@@ -82,12 +82,39 @@ export function initDatabase() {
       created_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
 
+    CREATE TABLE IF NOT EXISTS staff_profiles (
+      user_id TEXT PRIMARY KEY,
+      display_name TEXT NOT NULL,
+      email TEXT NOT NULL,
+      role TEXT DEFAULT 'viewer' NOT NULL,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS audit_events (
+      id TEXT PRIMARY KEY,
+      actor_id TEXT NOT NULL,
+      actor_name TEXT NOT NULL,
+      action TEXT NOT NULL,
+      entity_type TEXT NOT NULL,
+      entity_id TEXT NOT NULL,
+      detail TEXT DEFAULT '' NOT NULL,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE IF NOT EXISTS settings (
       key TEXT PRIMARY KEY,
       value TEXT,
       updated_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
   `);
+
+  // Ensure audience column exists in news
+  try {
+    db.exec(`ALTER TABLE news ADD COLUMN audience TEXT DEFAULT 'public';`);
+  } catch {
+    // Column already exists
+  }
 
   seedData();
 }
@@ -181,5 +208,30 @@ function seedData() {
     insertSetting.run('capacity', '10,000');
     insertSetting.run('contact_email', 'info@dedzadynamosfc.mw');
     insertSetting.run('contact_phone', '+265 888 123 456');
+  }
+
+  // Seed Staff Profiles if empty
+  const staffCount = db.prepare('SELECT COUNT(*) as count FROM staff_profiles').get().count;
+  if (staffCount === 0) {
+    const insertStaff = db.prepare(`
+      INSERT INTO staff_profiles (user_id, display_name, email, role)
+      VALUES (?, ?, ?, ?)
+    `);
+    insertStaff.run('staff_owner_01', 'Dedza Dynamos Admin', 'admin@dedzadynamosfc.mw', 'owner');
+    insertStaff.run('staff_editor_01', 'Media & Press Team', 'media@dedzadynamosfc.mw', 'editor');
+    insertStaff.run('staff_viewer_01', 'Club Operations Member', 'ops@dedzadynamosfc.mw', 'viewer');
+  }
+}
+
+export function logAuditEvent(actorId, actorName, action, entityType, entityId, detail = '') {
+  try {
+    const stmt = db.prepare(`
+      INSERT INTO audit_events (id, actor_id, actor_name, action, entity_type, entity_id, detail)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+    const id = 'evt_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
+    stmt.run(id, actorId, actorName, action, entityType, String(entityId), detail);
+  } catch (err) {
+    console.warn('Failed to record audit event:', err);
   }
 }

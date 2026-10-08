@@ -1,4 +1,4 @@
-import { db, initDatabase } from './db.mjs';
+import { db, initDatabase, logAuditEvent } from './db.mjs';
 
 initDatabase();
 
@@ -14,10 +14,11 @@ export async function handleApiRequest(req, res, pathname, query) {
     return true;
   }
 
-  const sendJson = (statusCode, data) => {
+  const sendJson = (statusCode, data, extraHeaders = {}) => {
     res.writeHead(statusCode, {
       'Content-Type': 'application/json; charset=utf-8',
-      'Cache-Control': 'no-store, no-cache'
+      'Cache-Control': 'no-store, no-cache',
+      ...extraHeaders
     });
     res.end(JSON.stringify(data));
   };
@@ -44,6 +45,49 @@ export async function handleApiRequest(req, res, pathname, query) {
   };
 
   try {
+    // ── READ-ONLY PUBLIC UPDATES (Cloudflare D1 Parity) ──
+    if (pathname === '/api/public/updates' && req.method === 'GET') {
+      const updates = db.prepare(`
+        SELECT id, title, lead as summary, date as publishedAt, tag as authorName
+        FROM news
+        WHERE status = 'Published' AND (audience = 'public' OR audience IS NULL)
+        ORDER BY date DESC, id DESC
+        LIMIT 24
+      `).all();
+      sendJson(200, { updates }, { 'Cache-Control': 'public, max-age=60, s-maxage=300' });
+      return true;
+    }
+
+    // ── AUDIT EVENTS ──
+    if (pathname === '/api/audit-events' && req.method === 'GET') {
+      const events = db.prepare('SELECT * FROM audit_events ORDER BY created_at DESC LIMIT 50').all();
+      sendJson(200, { events });
+      return true;
+    }
+
+    // ── STAFF PROFILES ──
+    if (pathname === '/api/staff') {
+      if (req.method === 'GET') {
+        const staff = db.prepare('SELECT user_id, display_name, email, role, created_at FROM staff_profiles ORDER BY role ASC').all();
+        sendJson(200, staff);
+        return true;
+      }
+      if (req.method === 'POST') {
+        const body = await getBody();
+        const { display_name, email, role = 'viewer' } = body;
+        if (!display_name || !email) return sendJson(400, { error: 'Display name and email are required' });
+        const user_id = 'staff_' + Date.now();
+        db.prepare(`
+          INSERT INTO staff_profiles (user_id, display_name, email, role)
+          VALUES (?, ?, ?, ?)
+        `).run(user_id, display_name, email, role);
+        logAuditEvent('admin', 'Dedza Dynamos Admin', 'create', 'staff_profile', user_id, `Created ${role} profile for ${display_name}`);
+        const created = db.prepare('SELECT * FROM staff_profiles WHERE user_id = ?').get(user_id);
+        sendJson(201, created);
+        return true;
+      }
+    }
+
     // ── STATS / DASHBOARD ──
     if (pathname === '/api/stats' && req.method === 'GET') {
       const newsCount = db.prepare('SELECT COUNT(*) as c FROM news').get().c;
@@ -51,12 +95,14 @@ export async function handleApiRequest(req, res, pathname, query) {
       const fixturesCount = db.prepare("SELECT COUNT(*) as c FROM matches WHERE status = 'Upcoming'").get().c;
       const resultsCount = db.prepare("SELECT COUNT(*) as c FROM matches WHERE status != 'Upcoming'").get().c;
       const partnersCount = db.prepare('SELECT COUNT(*) as c FROM partners').get().c;
+      const staffCount = db.prepare('SELECT COUNT(*) as c FROM staff_profiles').get().c;
       sendJson(200, {
         newsCount,
         playersCount,
         fixturesCount,
         resultsCount,
-        partnersCount
+        partnersCount,
+        staffCount
       });
       return true;
     }
@@ -66,10 +112,11 @@ export async function handleApiRequest(req, res, pathname, query) {
       const body = await getBody();
       const { username, password } = body;
       if (username === 'admin' && password === 'admin123') {
+        logAuditEvent('admin', 'Dedza Dynamos Admin', 'login', 'session', 'staff_owner_01', 'Admin signed in');
         sendJson(200, {
           success: true,
           token: 'dd_admin_auth_token_' + Date.now(),
-          user: { username: 'admin', role: 'Staff Administrator', name: 'Dedza Dynamos Admin' }
+          user: { username: 'admin', role: 'owner', name: 'Dedza Dynamos Admin' }
         });
       } else {
         sendJson(401, { error: 'Invalid username or password' });
@@ -103,14 +150,15 @@ export async function handleApiRequest(req, res, pathname, query) {
 
       if (req.method === 'POST') {
         const body = await getBody();
-        const { title, tag = 'News', date = new Date().toISOString().slice(0, 10), status = 'Published', lead = '', content = '', image = '' } = body;
+        const { title, tag = 'News', date = new Date().toISOString().slice(0, 10), status = 'Published', lead = '', content = '', image = '', audience = 'public' } = body;
         if (!title) return sendJson(400, { error: 'Title is required' });
         const stmt = db.prepare(`
-          INSERT INTO news (title, tag, date, status, lead, content, image)
-          VALUES (?, ?, ?, ?, ?, ?, ?)
+          INSERT INTO news (title, tag, date, status, lead, content, image, audience)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         `);
-        const result = stmt.run(title, tag, date, status, lead, content, image);
+        const result = stmt.run(title, tag, date, status, lead, content, image, audience);
         const created = db.prepare('SELECT * FROM news WHERE id = ?').get(result.lastInsertRowid);
+        logAuditEvent('admin', 'Dedza Dynamos Admin', status === 'Published' ? 'publish' : 'create', 'club_update', created.id, `Created story: ${title}`);
         sendJson(201, created);
         return true;
       }
@@ -136,19 +184,23 @@ export async function handleApiRequest(req, res, pathname, query) {
           status = existing.status,
           lead = existing.lead,
           content = existing.content,
-          image = existing.image
+          image = existing.image,
+          audience = existing.audience || 'public'
         } = body;
         db.prepare(`
           UPDATE news
-          SET title = ?, tag = ?, date = ?, status = ?, lead = ?, content = ?, image = ?, updated_at = CURRENT_TIMESTAMP
+          SET title = ?, tag = ?, date = ?, status = ?, lead = ?, content = ?, image = ?, audience = ?, updated_at = CURRENT_TIMESTAMP
           WHERE id = ?
-        `).run(title, tag, date, status, lead, content, image, id);
+        `).run(title, tag, date, status, lead, content, image, audience, id);
         const updated = db.prepare('SELECT * FROM news WHERE id = ?').get(id);
+        const actionType = status === 'Published' && existing.status !== 'Published' ? 'publish' : status === 'Draft' && existing.status === 'Published' ? 'unpublish' : 'update';
+        logAuditEvent('admin', 'Dedza Dynamos Admin', actionType, 'club_update', id, `Updated story: ${title}`);
         sendJson(200, updated);
         return true;
       }
       if (req.method === 'DELETE') {
         db.prepare('DELETE FROM news WHERE id = ?').run(id);
+        logAuditEvent('admin', 'Dedza Dynamos Admin', 'delete', 'club_update', id, `Deleted story #${id}`);
         sendJson(200, { success: true, id });
         return true;
       }
