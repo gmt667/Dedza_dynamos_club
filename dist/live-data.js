@@ -368,25 +368,38 @@
 
   // ── HOMEPAGE ─────────────────────────────────────────────────────────────────
   async function loadHomePage() {
-    const newsSection = document.querySelector('.news-strip, .latest-news, [data-live="news"]');
+    // Homepage layout: .card-grid inside section.shell (#main), .next-match and .latest-result inside .score-strip
     const [newsData, matchData] = await Promise.all([
       apiFetch('/api/public/updates'),
       apiFetch('/api/public/live-football'),
     ]);
 
-    if (newsData?.updates?.length && newsSection) {
-      const [latest] = newsData.updates;
-      newsSection.innerHTML = `
-        <article class="news-card">
-          <div class="news-card-copy">
-            <span class="meta">${fmtDate(latest.publishedAt || latest.createdAt)}</span>
-            <h3>${escHtml(latest.title)}</h3>
-            <p>${escHtml(latest.summary.slice(0, 120))}…</p>
-            <a class="arrow-link" href="/news/">All news →</a>
-          </div>
-        </article>`;
+    // ── News cards grid ────────────────────────────────────────────────────
+    if (newsData?.updates?.length) {
+      const cardGrid = document.querySelector('#main .card-grid');
+      if (cardGrid) {
+        const top3 = newsData.updates.filter(u => u.status === 'published' || u.audience === 'public').slice(0, 3);
+        if (top3.length) {
+          const images = ['dedza-cup-run', 'dedza-team-history', 'dedza-action'];
+          const tags = ['History', 'Club', 'Match report'];
+          cardGrid.innerHTML = top3.map((u, idx) => `
+            <article class="news-card">
+              <div class="news-card-image">
+                <img src="/assets/${images[idx % 3]}.jpg" alt="Club update" loading="lazy">
+                <span class="tag">${escHtml(tags[idx % 3])}</span>
+              </div>
+              <div class="news-card-copy">
+                <span class="meta">${fmtDate(u.publishedAt || u.createdAt)}</span>
+                <h3>${escHtml(u.title)}</h3>
+                <p>${escHtml((u.summary || '').slice(0, 120))}${(u.summary || '').length > 120 ? '…' : ''}</p>
+                <a class="arrow-link" href="/news/">Read more →</a>
+              </div>
+            </article>`).join('');
+        }
+      }
     }
 
+    // ── Match strip ────────────────────────────────────────────────────────
     if (matchData?.matches?.length) {
       const upcoming = matchData.matches.filter(isUpcoming).sort((a, b) => a.date.localeCompare(b.date));
       const results = matchData.matches.filter(isResult).sort((a, b) => b.date.localeCompare(a.date));
@@ -420,6 +433,7 @@
   }
 
   // ── COMPETITIONS PAGE ────────────────────────────────────────────────────────
+
   async function loadCompetitionsPage() {
     const tableBody = document.querySelector('#premiership .standings tbody');
     if (!tableBody) return;
