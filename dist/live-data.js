@@ -11,7 +11,9 @@
   // Fallback to the external admin URL only if same-origin request fails.
   // External admin API — used as same-origin fallback when path is not served by this host.
   // On hosted ChatGPT Sites, public data is served from the same origin via /api/public/*.
-  const EXTERNAL_API = 'https://dedza-dynamos-staff-admin.mwalwandadesire5.chatgpt.site';
+  // A static fan site may point at a separately deployed, public read-only API.
+  // It must never use the private staff dashboard as a fallback data host.
+  const PUBLIC_API = String(window.DEDZA_API_BASE || 'https://dedza-dynamos-public-data.mwalwandadesire5.chatgpt.site').replace(/\/$/, '');
 
   const teamLogos = {
     'Blue Eagles': 'blue-eagles.png', 'FCB Nyasa Big Bullets': 'fcb-nyasa-big-bullets.png',
@@ -48,7 +50,8 @@
 
     // 2. Fall back to the external admin API if same-origin returned non-200 (e.g. 404 on static host) or failed
     try {
-      const r2 = await fetch(EXTERNAL_API + path, { headers: { accept: 'application/json' } });
+      if (!PUBLIC_API) return null;
+      const r2 = await fetch(PUBLIC_API + path, { headers: { accept: 'application/json' } });
       if (r2.ok) return await r2.json();
     } catch {}
 

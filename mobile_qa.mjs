@@ -71,7 +71,7 @@ try {
     const menu=getComputedStyle(document.querySelector('.menu-button'));
     return {viewport:innerWidth,headingRight:Math.round(heading.right),headingLeft:Math.round(heading.left),menuDisplay:menu.display,horizontalOverflow:document.documentElement.scrollWidth>innerWidth};
   })()`);
-  const menu = await client.evaluate(`(async () => { document.querySelector('.menu-button').click(); await new Promise(resolve=>setTimeout(resolve,350)); const nav=document.querySelector('.mobile-nav'); const box=nav.getBoundingClientRect(); return {open:nav.classList.contains('open'),aria:document.querySelector('.menu-button').getAttribute('aria-expanded'),left:Math.round(box.left),right:Math.round(box.right),top:Math.round(box.top),bodyLocked:document.body.classList.contains('menu-open')}; })()`);
+  const menu = await client.evaluate(`(async () => { const button=document.querySelector('.menu-button'); button.click(); await new Promise(resolve=>setTimeout(resolve,350)); const nav=document.querySelector('.mobile-nav'); const box=nav.getBoundingClientRect(); return {open:nav.classList.contains('open'),aria:button.getAttribute('aria-expanded'),left:Math.round(box.left),right:Math.round(box.right),top:Math.round(box.top),bodyLocked:document.body.classList.contains('menu-open'),navDisplay:getComputedStyle(nav).display}; })()`);
   const menuShot = await client.send('Page.captureScreenshot', { format: 'png' });
   writeFileSync(path.join(root, 'snap_mobile_menu_fixed.png'), Buffer.from(menuShot.data, 'base64'));
   await client.evaluate(`document.querySelector('.menu-button').click()`);

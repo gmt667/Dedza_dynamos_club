@@ -1,6 +1,10 @@
 if(!document.querySelector('link[href="/nav.css"]')){const navStyles=document.createElement('link');navStyles.rel='stylesheet';navStyles.href='/nav.css';document.head.append(navStyles)}
-const DEDZA_API_BASE=window.DEDZA_API_BASE||'';
+const DEDZA_API_BASE=String(window.DEDZA_API_BASE||'https://dedza-dynamos-public-data.mwalwandadesire5.chatgpt.site').replace(/\/$/,'');
 window.DEDZA_API_BASE=DEDZA_API_BASE;
+document.querySelectorAll('.footer-bottom span').forEach((item)=>{
+  if(item.textContent.includes('concept')) item.textContent=item.textContent.replace(/\s*concept/i,'');
+  if(item.textContent.includes('AstraMind')) item.textContent='Dedza Dynamos FC';
+});
 const menu=document.querySelector('.menu-button');const mobile=document.querySelector('.mobile-nav');
 const primaryLinks=[['News','/news/'],['Video','/media/'],['Fixtures','/matches/'],['Tickets','/tickets/'],['Shop','/shop/'],['Players','/team/'],['Club','/club/']];
 const moreLinks=[['Tables & cups','/competitions/'],['Supporters','/supporters/'],['Partners','/partners/'],['Contact','/contact/']];
@@ -24,11 +28,18 @@ function setMobileMenu(open){
   if(use)use.setAttribute('href',open?'/assets/icons.svg#close':'/assets/icons.svg#menu');
 }
 if(menu&&mobile){
-  menu.addEventListener('click',()=>setMobileMenu(!mobile.classList.contains('open')));
   mobile.addEventListener('click',event=>{if(event.target.closest('a'))setMobileMenu(false)});
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&mobile.classList.contains('open'))setMobileMenu(false)});
   window.addEventListener('resize',()=>{if(window.innerWidth>940)setMobileMenu(false)},{passive:true});
 }
+// The navigation is generated after this listener is registered. A delegated
+// handler remains reliable if a browser replaces the header control.
+document.addEventListener('click',event=>{
+  const control=event.target.closest('.menu-button');
+  if(!control)return;
+  event.preventDefault();
+  setMobileMenu(!mobile?.classList.contains('open'));
+});
 const searchIndex = [
   { cat: 'Page', title: 'Home', subtitle: 'Dedza Dynamos official homepage', url: '/', keywords: 'home landing main official yellow boys' },
   { cat: 'Page', title: 'Fixtures & Match Centre', subtitle: 'Official SULOM fixtures, results and match details', url: '/fixtures/', keywords: 'fixtures matches games schedule results cup league season calendar next game' },
@@ -108,8 +119,8 @@ function hydrateSearchIndex(){
     }catch{}
     finally{clearTimeout(timeout)}
     try{
-      const fallbackUrl='https://dedza-dynamos-staff-admin.mwalwandadesire5.chatgpt.site'+path;
-      const response2=await fetch(fallbackUrl,{headers:{accept:'application/json'}});
+      if(!DEDZA_API_BASE)return null;
+      const response2=await fetch(DEDZA_API_BASE+path,{headers:{accept:'application/json'}});
       if(response2.ok) return await response2.json();
     }catch{}
     return null;
@@ -381,7 +392,7 @@ if (searchOverlay) {
 const toast=document.querySelector('.toast');function showToast(text){toast.textContent=text;toast.classList.add('show');clearTimeout(window.toastT);window.toastT=setTimeout(()=>toast.classList.remove('show'),3500)}
 document.querySelectorAll('[data-pending]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();showToast(b.dataset.pending||'This service is awaiting club confirmation.')}));
 document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('[data-card]').forEach(c=>c.hidden=b.dataset.filter!=='all'&&!c.dataset.card.includes(b.dataset.filter))}));
-const history={2017:['The beginning','Dedza Dynamos Football Club is founded in Dedza, Malawi.'],2021:['Regional champions','The Yellow Boys win the Central Region title and earn promotion to Malawi’s elite league.'],2022:['Top-flight debut','The first Super League season ends with a ninth-place finish.'],2023:['Individual recognition','Clement Nyondo wins the league Golden Boot after a reported 16-goal season.'],2026:['A national final','Dedza reach their first Castel Challenge Cup final and finish as runners-up.']};
+const history={2017:['The beginning','Dedza Dynamos Football Club is founded in Dedza, Malawi.'],2021:['Archive milestone','A historic club milestone recorded in the Dedza archive.'],2022:['Top-flight football','The club competes in Malawi’s elite league.'],2023:['Archive recognition','A historical player achievement recorded in the club archive.'],2026:['National cup final','FAM records Dedza Dynamos as Castel Challenge Cup finalists.']};
 document.querySelectorAll('[data-year]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-year]').forEach(x=>x.classList.toggle('active',x===b));const [h,p]=history[b.dataset.year];document.querySelector('.history-panel').innerHTML=`<p class="kicker">${b.dataset.year}</p><h2>${h}</h2><p>${p}</p>`}));
 document.querySelectorAll('[data-back-top]').forEach(b=>b.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'})));
 document.querySelector('[data-contact-form]')?.addEventListener('submit',event=>{event.preventDefault();const status=event.currentTarget.querySelector('[role=status]');status.textContent='Your message has been prepared. Submission will activate when the club confirms its official mailbox.';event.currentTarget.reset()});
@@ -428,10 +439,6 @@ document.querySelectorAll('.mobile-nav').forEach(nav=>{
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           Fan Membership
         </a>
-        <a class="mobile-action-btn admin" href="${(location.hostname==='127.0.0.1'||location.hostname==='localhost')?'http://127.0.0.1:4174/':'https://dedza-dynamos-staff-admin.mwalwandadesire5.chatgpt.site/'}" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
-          Club Administration
-        </a>
       </div>
     </div>
   `;
@@ -461,6 +468,7 @@ document.querySelectorAll('.main-nav').forEach(nav=>{
 });
 document.addEventListener('click',e=>{if(!e.target.closest('.main-nav'))closeMega()});
 const sourceStories=[{source:'Football Association of Malawi',date:'21 April 2026',title:'FAM grants full licences to 14 Super League clubs',summary:'Goshen City Dedza Dynamos are listed among the clubs granted a full licence.',url:'https://fam.mw/fam-grants-full-licences-to-14-super-league-clubs/'},{source:'Football Association of Malawi',date:'7 February 2026',title:'Dedza Dynamos reach the Castel Challenge Cup final',summary:'Dedza edged Blue Eagles on penalties to secure a place in the national final.',url:'https://fam.mw/dedza-dynamos-edge-blue-eagles-on-penalties-to-reach-castel-challenge-cup-final/'},{source:'Super League of Malawi',date:'2026/27 season',title:'FDH Bank Premiership fixtures and results',summary:'Official fixtures, results and competition data for Malawi’s top flight.',url:'https://sulommw.com/competition/fdh-bank-premiership-2026-27/'}];
-function clubPosts(){try{return JSON.parse(localStorage.getItem('dedza-club-posts')||'[]')}catch{return[]}}
+// Club news is read only on the fan site. Publishing happens in the protected staff application.
+function clubPosts(){return[]}
 function renderNewsFeeds(){if(location.pathname!=='/news/')return;let mount=document.querySelector('[data-news-feeds]');if(!mount){mount=document.createElement('section');mount.dataset.newsFeeds='';document.querySelector('main .shell')?.append(mount)}if(!mount)return;const local=clubPosts();const official=local.length?local.map(item=>`<article class="news-card"><div class="news-card-copy"><span class="meta">Official club update · ${item.date}</span><h3>${item.title}</h3><p>${item.summary}</p><span class="arrow-link">Published by Dedza Dynamos</span></div></article>`).join(''):'<article class="news-card"><div class="news-card-copy"><span class="meta">Official club updates</span><h3>Club newsroom ready</h3><p>Verified club staff announcements will appear here once the secure publishing service is activated.</p></div></article>';const external=sourceStories.map(item=>`<article class="news-card"><div class="news-card-copy"><span class="meta">Source: ${item.source} · ${item.date}</span><h3>${item.title}</h3><p>${item.summary}</p><a class="arrow-link" href="${item.url}" target="_blank" rel="noopener">Read at source →</a></div></article>`).join('');mount.innerHTML=`<section class="section-head"><div><p class="eyebrow">Official club channel</p><h2>From Dedza</h2></div><p>Club-authored updates are labelled separately from independent reporting.</p></section><div class="card-grid">${official}</div><section class="section-head" style="margin-top:4rem"><div><p class="eyebrow">External reporting</p><h2>From trusted sources</h2></div><p>Headlines link to the original publisher and are never presented as club statements.</p></section><div class="card-grid">${external}</div>`}renderNewsFeeds();
 function renderAdminDashboard(){const root=document.querySelector('[data-club-admin]');if(!root)return;const posts=clubPosts();root.innerHTML=`<div class="support-grid"><article class="support-card"><p class="eyebrow">Club content</p><h2>Publish an update</h2><form data-club-post-form><label>Headline<input name="title" required maxlength="90"></label><label>Summary<textarea name="summary" required maxlength="280" rows="5"></textarea></label><label>Date<input name="date" type="date" required></label><button class="button yellow" type="submit">Add official update</button></form></article><article class="support-card dark"><p class="eyebrow">News rules</p><h2>Source-aware publishing</h2><p>Club updates display under “From Dedza”. SULOM and FAM stories remain externally attributed with links to their original reports.</p><p class="meta">${posts.length} local draft${posts.length===1?'':'s'} in this browser</p></article></div><section class="section-head" style="margin-top:4rem"><div><p class="eyebrow">Current local drafts</p><h2>News queue</h2></div></section><div class="card-grid">${posts.length?posts.map(post=>`<article class="news-card"><div class="news-card-copy"><span class="meta">${post.date}</span><h3>${post.title}</h3><p>${post.summary}</p></div></article>`).join(''):'<p>No club updates have been added in this browser.</p>'}</div>`;const form=root.querySelector('[data-club-post-form]');form?.addEventListener('submit',event=>{event.preventDefault();const data=new FormData(form);const all=clubPosts();all.unshift({title:String(data.get('title')).trim(),summary:String(data.get('summary')).trim(),date:String(data.get('date'))});localStorage.setItem('dedza-club-posts',JSON.stringify(all));renderAdminDashboard()});}renderAdminDashboard();
