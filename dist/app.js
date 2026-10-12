@@ -1,31 +1,54 @@
 if(!document.querySelector('link[href="/nav.css"]')){const navStyles=document.createElement('link');navStyles.rel='stylesheet';navStyles.href='/nav.css';document.head.append(navStyles)}
+const DEDZA_API_BASE=window.DEDZA_API_BASE||'';
+window.DEDZA_API_BASE=DEDZA_API_BASE;
 const menu=document.querySelector('.menu-button');const mobile=document.querySelector('.mobile-nav');
 const primaryLinks=[['News','/news/'],['Video','/media/'],['Fixtures','/matches/'],['Tickets','/tickets/'],['Shop','/shop/'],['Players','/team/'],['Club','/club/']];
 const moreLinks=[['Tables & cups','/competitions/'],['Supporters','/supporters/'],['Partners','/partners/'],['Contact','/contact/']];
-document.querySelectorAll('.main-nav').forEach(nav=>{const current=location.pathname;nav.innerHTML=primaryLinks.map(([label,href])=>`<a href="${href}"${current===href?' aria-current="page"':''}>${label}</a>`).join('')+`<div class="more-menu"><button class="more-button" aria-expanded="false" aria-haspopup="true">More <span aria-hidden="true">⌄</span></button><div class="more-panel">${moreLinks.map(([label,href])=>`<a href="${href}"${current===href?' aria-current="page"':''}>${label}</a>`).join('')}</div></div>`;});
-document.querySelectorAll('.mobile-nav').forEach(nav=>{const current=location.pathname;nav.innerHTML=[...primaryLinks,...moreLinks].map(([label,href])=>`<a href="${href}"${current===href?' aria-current="page"':''}>${label}</a>`).join('')+`<a href="/admin/">Sign in</a>`});
 document.querySelectorAll('.more-button').forEach(button=>button.addEventListener('click',()=>{const open=button.parentElement.classList.toggle('open');button.setAttribute('aria-expanded',open)}));
-document.querySelectorAll('.head-actions').forEach(actions=>{const existingSearch=actions.querySelector('[data-search]');const existingMenu=actions.querySelector('.menu-button');actions.innerHTML='';const signIn=document.createElement('a');signIn.className='account-link';signIn.href='/admin/';signIn.innerHTML='<svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#user"></use></svg><span>Sign in</span>';const basket=document.createElement('a');basket.className='basket-link';basket.href='/shop/';basket.setAttribute('aria-label','Basket, 0 items');basket.innerHTML='<span class="basket-icon" aria-hidden="true">Bag</span><strong>0</strong>';actions.append(existingSearch,signIn,basket,existingMenu)});
+document.querySelectorAll('.head-actions').forEach(actions=>{const existingSearch=actions.querySelector('[data-search]');const existingMenu=actions.querySelector('.menu-button');actions.innerHTML='';const signIn=document.createElement('a');signIn.className='account-link';signIn.href='/members/';signIn.innerHTML='<svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#user"></use></svg><span>Sign in</span>';const basket=document.createElement('a');basket.className='basket-link';basket.href='/shop/';basket.setAttribute('aria-label','Basket, 0 items');basket.innerHTML='<span class="basket-icon" aria-hidden="true">Bag</span><strong>0</strong>';actions.append(existingSearch,signIn,basket,existingMenu)});
 const officialTeamLogos={
   'Blue Eagles':'blue-eagles.png','FCB Nyasa Big Bullets':'fcb-nyasa-big-bullets.png','FCB Big Bullets':'fcb-nyasa-big-bullets.png','Mighty Wanderers':'mighty-wanderers.png','Silver Strikers':'silver-strikers.png','Masters FC':'masters-fc.png','Chitipa United':'chitipa-united.png','Moyale Barracks':'moyale-barracks.png','Civil Service United':'civil-service-united.png','Red Lions':'red-lions.png','Luanar Mitundu':'luanar-mitundu.png','Ekhaya FC':'ekhaya-fc.png','Goshen City Dedza Dynamos':'dedza-dynamos.png','Dedza Dynamos':'dedza-dynamos.png','Karonga United':'karonga-united.png','MAFCO':'mafco.png','MAFCO F.C':'mafco.png','Kamuzu Barracks':'kamuzu-barracks.png','Creck Sporting':'creck-sporting.png','Mzuzu City Hammers':'mzuzu-city-hammers.png','Mzuzu City Hammers FC':'mzuzu-city-hammers.png','Mighty Tigers':'mighty-tigers.png','FOMO':'fomo-fc.png','FOMO FC':'fomo-fc.png','Bangwe All Stars':'bangwe-all-stars.png'
 };
 document.querySelectorAll('.standings tbody tr').forEach(row=>{const cell=row.cells?.[1];if(!cell||cell.querySelector('img'))return;const name=cell.textContent.trim();const logo=officialTeamLogos[name];if(!logo)return;cell.textContent='';const wrap=document.createElement('span');wrap.className='club-cell';const img=document.createElement('img');img.src=`/assets/teams/${logo}`;img.alt=`${name} crest`;img.loading='lazy';wrap.append(img,document.createTextNode(name));cell.append(wrap)});
 document.querySelectorAll('.fixture-teams>span').forEach(team=>{if(team.querySelector('img'))return;const name=team.textContent.trim();const logo=officialTeamLogos[name];if(!logo)return;team.classList.add('team-with-crest');const img=document.createElement('img');img.src=`/assets/teams/${logo}`;img.alt=`${name} crest`;img.loading='lazy';team.prepend(img)});
-if(menu)menu.addEventListener('click',()=>{const open=mobile.classList.toggle('open');document.body.classList.toggle('menu-open',open);menu.setAttribute('aria-expanded',open)});
+function setMobileMenu(open){
+  if(!menu||!mobile)return;
+  if(open){
+    if(searchOverlay&&searchOverlay.classList.contains('open'))closeSearch();
+  }
+  mobile.classList.toggle('open',open);
+  document.body.classList.toggle('menu-open',open);
+  menu.setAttribute('aria-expanded',String(open));
+  menu.setAttribute('aria-label',open?'Close menu':'Open menu');
+  const use=menu.querySelector('use');
+  if(use)use.setAttribute('href',open?'/assets/icons.svg#close':'/assets/icons.svg#menu');
+}
+if(menu&&mobile){
+  menu.addEventListener('click',()=>setMobileMenu(!mobile.classList.contains('open')));
+  mobile.addEventListener('click',event=>{if(event.target.closest('a'))setMobileMenu(false)});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&mobile.classList.contains('open'))setMobileMenu(false)});
+  window.addEventListener('resize',()=>{if(window.innerWidth>940)setMobileMenu(false)},{passive:true});
+}
 const searchIndex = [
   { cat: 'Page', title: 'Home', subtitle: 'Dedza Dynamos official homepage', url: '/', keywords: 'home landing main official yellow boys' },
-  { cat: 'Page', title: 'Fixtures & Match Centre', subtitle: 'All 2026/27 upcoming games, cup ties & results', url: '/fixtures/', keywords: 'fixtures matches games schedule results cup league season calender next game' },
-  { cat: 'Page', title: 'Video & TV Channels', subtitle: 'MBC TV, Mibawa, Times, Luntha, Zodiac live streaming', url: '/video/', keywords: 'video streaming watch live tv mbc mibawa luntha times zodiac media broadcast stream' },
-  { cat: 'Page', title: 'Official Club Shop', subtitle: 'Jerseys, hoodies, tracksuit pants & club outfits', url: '/shop/', keywords: 'shop store jersey kit hoodie track pants outfit merchandise clothes buy gear' },
-  { cat: 'Page', title: 'Match Tickets & Booking', subtitle: 'Digital booking via uthenga.co, Kwenda & Machenji', url: '/tickets/', keywords: 'tickets booking buy gate price uthenga kwenda machenji passes entry seats' },
-  { cat: 'Page', title: 'Players & First Team Squad', subtitle: 'Full player profiles, positions, numbers & coaches', url: '/team/', keywords: 'players team squad roster line up goalkeeper defender midfielder forward' },
+  { cat: 'Page', title: 'Fixtures & Match Centre', subtitle: 'Official SULOM fixtures, results and match details', url: '/fixtures/', keywords: 'fixtures matches games schedule results cup league season calendar next game' },
+  { cat: 'Page', title: 'Video & TV', subtitle: 'Club video and verified broadcast information', url: '/video/', keywords: 'video streaming watch live tv media broadcast stream' },
+  { cat: 'Page', title: 'Club Shop', subtitle: 'Club-published merchandise information', url: '/shop/', keywords: 'shop store jersey kit merchandise buy gear' },
+  { cat: 'Page', title: 'Match Tickets', subtitle: 'Club-published matchday ticket information', url: '/tickets/', keywords: 'tickets booking buy gate price passes entry seats' },
+  { cat: 'Page', title: 'Players & Squad', subtitle: 'Club-managed squad directory and historical records', url: '/team/', keywords: 'players team squad roster line up goalkeeper defender midfielder forward' },
   { cat: 'Page', title: 'League Tables & Cups', subtitle: 'FDH Bank Premiership standings & cup brackets', url: '/competitions/', keywords: 'table standings position points goals league sulom fam fdh premiership ranking' },
   { cat: 'Page', title: 'Club History & Stadium', subtitle: 'Founded 2017, Dedza Stadium, board & leadership', url: '/club/', keywords: 'club history stadium dedza ground board executive management story' },
   { cat: 'Page', title: 'News & Announcements', subtitle: 'Official club updates & FAM/SULOM reports', url: '/news/', keywords: 'news stories press announcements reports updates articles' },
-  { cat: 'Page', title: 'Supporters & Fans', subtitle: 'Fan clubs, WhatsApp group & matchday community', url: '/supporters/', keywords: 'supporters fans whatsapp community followers chants' },
-  { cat: 'Page', title: 'Commercial Partners & Sponsors', subtitle: 'Goshen City & club sponsors', url: '/partners/', keywords: 'partners sponsors goshen commercial branding advertising' },
+  { cat: 'Page', title: 'Supporters & Fans', subtitle: 'Supporter information and matchday community', url: '/supporters/', keywords: 'supporters fans community followers chants' },
+  { cat: 'Page', title: 'Commercial Partners & Sponsors', subtitle: 'Club-approved partnership information', url: '/partners/', keywords: 'partners sponsors commercial branding advertising' },
   { cat: 'Page', title: 'Contact Us', subtitle: 'Stadium address, official mailbox & phone', url: '/contact/', keywords: 'contact email phone address location office mailbox' },
-  { cat: 'Page', title: 'Admin & Staff Portal', subtitle: 'Secure publishing, team management & settings', url: '/admin/', keywords: 'admin login sign in staff portal management dashboard members' },
+  { cat: 'Page', title: 'Supporter Membership', subtitle: 'Fan membership information and member sign-in', url: '/members/', keywords: 'fan member membership sign in supporters' },
+
+];
+
+/* Legacy hand-entered fixtures, prices and partner claims are deliberately
+   excluded from search. Live results below come only from SULOM or staff D1. */
+const legacySearchIndex = [
 
   { cat: 'Fixtures', title: 'Dedza Dynamos vs Masters FC', subtitle: 'Next Match · Sun 11 Oct · 14:30 CAT · Dedza Stadium · FDH Premiership', url: '/fixtures/', keywords: 'next match masters fc october home league fdh bank premiership' },
   { cat: 'Fixtures', title: 'Civil Service United vs Dedza Dynamos', subtitle: 'Sat 17 Oct · Civo Stadium, Lilongwe · FDH Premiership', url: '/fixtures/', keywords: 'civil service united civo lilongwe away league' },
@@ -71,6 +94,53 @@ const searchIndex = [
   { cat: 'Competition', title: 'Castel Challenge Cup Brackets', subtitle: 'Dedza are 2025/26 runners-up and into Round of 16', url: '/competitions/#castel', keywords: 'castel challenge cup knockout bracket draw runners up' },
   { cat: 'Community', title: 'Fan Club & WhatsApp', subtitle: 'Join verified supporter chats and traveling fans', url: '/supporters/', keywords: 'supporters club whatsapp group chat fans community' }
 ];
+void legacySearchIndex;
+
+let searchHydrationPromise;
+function hydrateSearchIndex(){
+  if(searchHydrationPromise)return searchHydrationPromise;
+  const fetchJson=async path=>{
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),4000);
+    try{
+      const response=await fetch(path,{signal:controller.signal,headers:{accept:'application/json'}});
+      if(response.ok) return await response.json();
+    }catch{}
+    finally{clearTimeout(timeout)}
+    try{
+      const fallbackUrl='https://dedza-dynamos-staff-admin.mwalwandadesire5.chatgpt.site'+path;
+      const response2=await fetch(fallbackUrl,{headers:{accept:'application/json'}});
+      if(response2.ok) return await response2.json();
+    }catch{}
+    return null;
+  };
+  searchHydrationPromise=Promise.allSettled([
+    fetchJson('/api/public/live-football'),
+    fetchJson('/api/public/updates'),
+    fetchJson('/api/public/players')
+  ]).then(results=>{
+    const [footballResult,newsResult,playersResult]=results;
+    if(footballResult.status==='fulfilled' && footballResult.value){
+      const football=footballResult.value;
+      (football.matches||[]).slice(0,30).forEach(match=>searchIndex.push({
+        cat:match.status==='full_time'?'Result':'Fixture',
+        title:`${match.home} ${match.status==='full_time'?(match.score||'FT'):'vs'} ${match.away}`,
+        subtitle:`${match.date} · ${match.time||''} · ${match.competition} · SULOM verified`,
+        url:'/matches/',
+        keywords:`${match.home} ${match.away} ${match.venue} ${match.competition} ${match.status}`
+      }));
+      if(football.dedza)searchIndex.push({cat:'Standing',title:`Dedza Dynamos: position ${football.dedza.position}`,subtitle:`${football.dedza.points} points from ${football.dedza.played} matches · SULOM verified`,url:'/competitions/',keywords:'dedza position league table points standing premiership'});
+    }
+    if(newsResult.status==='fulfilled' && newsResult.value){
+      (newsResult.value.updates||[]).slice(0,20).forEach(update=>searchIndex.push({cat:'Club news',title:update.title,subtitle:(update.summary||'').slice(0,120),url:'/news/',keywords:`${update.title} ${update.summary||''}`}));
+    }
+    if(playersResult.status==='fulfilled' && playersResult.value){
+      (playersResult.value.players||[]).forEach(player=>searchIndex.push({cat:'Player',title:`${player.firstName} ${player.lastName}`,subtitle:`${player.position}${player.shirtNumber?' · #'+player.shirtNumber:''}`,url:'/team/',keywords:`${player.firstName} ${player.lastName} ${player.position} ${player.squadRole||''}`}));
+    }
+  }).catch(()=>undefined);
+  return searchHydrationPromise;
+}
+void hydrateSearchIndex();
 
 const searchOverlay = document.querySelector('.site-search');
 if (searchOverlay) {
@@ -94,7 +164,7 @@ if (searchOverlay) {
 
       <div class="search-input-box">
         <svg class="input-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input id="site-search" type="search" placeholder="Search fixtures, tickets, jerseys, live TV, players..." autocomplete="off" spellcheck="false">
+        <input id="site-search" type="search" placeholder="Search fixtures, news, players..." autocomplete="off" spellcheck="false">
         <button class="search-clear-btn" id="search-clear-btn" aria-label="Clear query">×</button>
       </div>
 
@@ -102,9 +172,8 @@ if (searchOverlay) {
         <span class="quick-label">Popular:</span>
         <button class="quick-pill" data-query="Next Match"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M13 2 3 14h8l-1 8 10-12h-8z"/></svg>Next Match</button>
         <button class="quick-pill" data-query="Tickets"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2 2 2 2 0 0 1 0 4 2 2 0 0 0-2 2v2h18v-2a2 2 0 0 0-2-2 2 2 0 0 1 0-4 2 2 0 0 0 2-2V6H3z"/></svg>Tickets</button>
-        <button class="quick-pill" data-query="Jersey"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 3 4 3 4-3 5 4-3 5-2-1v10H8V11l-2 1-3-5z"/></svg>Home Jersey</button>
-        <button class="quick-pill" data-query="MBC TV"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="m9 3 3 3 3-3M9 11l6 2-6 2z"/></svg>Watch Live TV</button>
-        <button class="quick-pill" data-query="Castel Cup"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 3h12v4a6 6 0 0 1-12 0zM8 13h8M12 11v6M8 21h8"/><path d="M6 5H3v1a4 4 0 0 0 4 4M18 5h3v1a4 4 0 0 1-4 4"/></svg>Castel Cup</button>
+        <button class="quick-pill" data-query="Club news"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5h16v14H4zM7 9h10M7 13h7M7 17h5"/></svg>Club News</button>
+        <button class="quick-pill" data-query="Results"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg>Results</button>
         <button class="quick-pill" data-query="Standings"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20V8"/></svg>Standings</button>
         <button class="quick-pill" data-query="Players"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20a6 6 0 0 1 12 0M15 15a5 5 0 0 1 5 5"/></svg>Squad</button>
       </div>
@@ -128,12 +197,16 @@ if (searchOverlay) {
   let selectedIdx = -1;
 
   function openSearch() {
+    setMobileMenu(false);
     searchOverlay.classList.add('open');
     document.body.classList.add('search-open');
     setTimeout(() => {
       searchInput.focus();
       renderResults(searchInput.value);
     }, 40);
+    void hydrateSearchIndex().then(()=>{
+      if(searchOverlay.classList.contains('open'))renderResults(searchInput.value);
+    });
   }
 
   function closeSearch() {
@@ -317,9 +390,9 @@ const polishedMore=[['Tables & cups','/competitions/'],['Supporters','/supporter
 /* ── Mega-menu panel definitions ────────────────────────── */
 const megaPanels={
   '/news/':`<div class="mega-col"><span class="mega-label">Club news</span><a href="/news/">Latest news</a><a href="/media/">Media centre</a><a href="/news/">Club announcements</a></div><div class="mega-col"><span class="mega-label">External sources</span><a href="https://fam.mw" target="_blank" rel="noopener">FAM — Football Assoc.</a><a href="https://sulommw.com" target="_blank" rel="noopener">SULOM — Super League</a><a href="https://times.mw" target="_blank" rel="noopener">Times of Malawi</a></div><div class="mega-feat"><span>Yellow Boys</span><strong>All the latest from Dedza.</strong><a href="/news/">Read all news <b>→</b></a></div>`,
-  '/video/':`<div class="mega-col"><span class="mega-label">Watch live</span><a href="https://www.mbcmalawi.com" target="_blank" rel="noopener">MBC Television</a><a href="https://www.mibawa.com" target="_blank" rel="noopener">Mibawa (streaming)</a><a href="https://www.lunthatv.com" target="_blank" rel="noopener">Luntha TV</a></div><div class="mega-col"><span class="mega-label">More channels</span><a href="https://www.times.mw" target="_blank" rel="noopener">Times Television</a><a href="https://www.zodiacmalawi.com" target="_blank" rel="noopener">Zodiac Broadcasting</a><a href="https://www.mbcmalawi.com" target="_blank" rel="noopener">MBC 2 Sports</a></div><div class="mega-feat"><span>Dedza Dynamos TV</span><strong>Catch every Yellow Boys moment.</strong><a href="/video/">All channels <b>→</b></a></div>`,
+  '/video/':`<div class="mega-col"><span class="mega-label">Club media</span><a href="/video/">Latest video</a><a href="/media/">Media centre</a><a href="/news/">Club news</a></div><div class="mega-col"><span class="mega-label">Official football sources</span><a href="https://fam.mw" target="_blank" rel="noopener">Football Association of Malawi</a><a href="https://sulommw.com" target="_blank" rel="noopener">Super League of Malawi</a></div><div class="mega-feat"><span>Dedza Dynamos media</span><strong>Verified club and match coverage.</strong><a href="/video/">View media <b>→</b></a></div>`,
   '/fixtures/':`<div class="mega-col"><span class="mega-label">Matchdays</span><a href="/fixtures/">Fixtures & results</a><a href="/competitions/">League tables</a><a href="/competitions/">Cup standings</a></div><div class="mega-col"><span class="mega-label">Season</span><a href="/matches/">All matches</a><a href="/competitions/">FDH Premiership</a><a href="/competitions/">Castel Challenge Cup</a></div><div class="mega-feat"><span>Match centre</span><strong>Never miss a game.</strong><a href="/fixtures/">View fixtures <b>→</b></a></div>`,
-  '/tickets/':`<div class="mega-col"><span class="mega-label">Buy tickets</span><a href="/tickets/">All ticket options</a><a href="https://uthenga.co" target="_blank" rel="noopener">uthenga.co</a><a href="https://kwenda.com" target="_blank" rel="noopener">Kwenda</a></div><div class="mega-col"><span class="mega-label">At the gate</span><a href="https://machenji.mw" target="_blank" rel="noopener">Machenji</a><a href="/supporters/">Supporter info</a><a href="/contact/">Contact the club</a></div><div class="mega-feat"><span>Matchday tickets</span><strong>Be in the stands for the Yellow Boys.</strong><a href="/tickets/">Get tickets <b>→</b></a></div>`,
+  '/tickets/':`<div class="mega-col"><span class="mega-label">Ticket information</span><a href="/tickets/">Latest ticket notices</a><a href="/fixtures/">Choose a match</a></div><div class="mega-col"><span class="mega-label">Matchday help</span><a href="/supporters/">Supporter information</a><a href="/contact/">Contact the club</a></div><div class="mega-feat"><span>Matchday tickets</span><strong>Use only club-confirmed sales channels.</strong><a href="/tickets/">Ticket information <b>→</b></a></div>`,
   '/shop/':`<div class="mega-col"><span class="mega-label">Kits</span><a href="/shop/">Home jersey</a><a href="/shop/">Away kit</a><a href="/shop/">Goalkeeper kit</a></div><div class="mega-col"><span class="mega-label">Clothing</span><a href="/shop/">Hoodie tops</a><a href="/shop/">Track pants</a><a href="/shop/">Full tracksuit outfit</a></div><div class="mega-feat"><span>Official store</span><strong>Wear the yellow.</strong><a href="/shop/">Shop now <b>→</b></a></div>`,
   '/team/':`<div class="mega-col"><span class="mega-label">Squad</span><a href="/team/">First team</a><a href="/team/">Goalkeepers</a><a href="/team/">Defenders</a></div><div class="mega-col"><span class="mega-label">More</span><a href="/team/">Midfielders</a><a href="/team/">Forwards</a><a href="/club/">Coaching staff</a></div><div class="mega-feat"><span>Players</span><strong>The Yellow Boys squad.</strong><a href="/team/">View all players <b>→</b></a></div>`,
   '/club/':`<div class="mega-col"><span class="mega-label">About</span><a href="/club/">Club history</a><a href="/club/">Stadium & facilities</a><a href="/club/">Club values</a></div><div class="mega-col"><span class="mega-label">Community</span><a href="/supporters/">Supporters</a><a href="/partners/">Partners</a><a href="/contact/">Contact us</a></div><div class="mega-feat"><span>The Club</span><strong>Goshen City Dedza Dynamos.</strong><a href="/club/">About the club <b>→</b></a></div>`,
@@ -334,7 +407,38 @@ document.querySelectorAll('.main-nav').forEach(nav=>{
     return `<a href="${href}"${current===href?' aria-current="page"':''}>${label}</a>`;
   }).join('');
 });
-document.querySelectorAll('.mobile-nav').forEach(nav=>{const current=location.pathname;nav.innerHTML=`<span class="mobile-nav-label">Explore Dedza Dynamos</span>`+[...polishedPrimary,...polishedMore].map(([label,href])=>`<a href="${href}"${current===href?' aria-current="page"':''}>${label}<span aria-hidden="true">→</span></a>`).join('')+`<a class="mobile-admin" href="/members/">Members <span aria-hidden="true">→</span></a>`});
+document.querySelectorAll('.mobile-nav').forEach(nav=>{
+  const current=location.pathname;
+  nav.innerHTML=`
+    <div class="mobile-nav-inner">
+      <div class="mobile-nav-head">
+        <span class="mobile-nav-label">Dedza Dynamos FC</span>
+        <button class="mobile-nav-close" id="mobile-nav-close-btn" aria-label="Close menu">✕</button>
+      </div>
+      <div class="mobile-nav-links">
+        ${[...polishedPrimary,...polishedMore].map(([label,href])=>`
+          <a href="${href}"${current===href?' aria-current="page" class="active"':''}>
+            <span>${label}</span>
+            <span class="mobile-arrow" aria-hidden="true">→</span>
+          </a>
+        `).join('')}
+      </div>
+      <div class="mobile-nav-actions">
+        <a class="mobile-action-btn members" href="/members/">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Fan Membership
+        </a>
+        <a class="mobile-action-btn admin" href="${(location.hostname==='127.0.0.1'||location.hostname==='localhost')?'http://127.0.0.1:4174/':'https://dedza-dynamos-staff-admin.mwalwandadesire5.chatgpt.site/'}" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+          Club Administration
+        </a>
+      </div>
+    </div>
+  `;
+});
+document.addEventListener('click',e=>{
+  if(e.target.closest('#mobile-nav-close-btn'))setMobileMenu(false);
+});
 /* ── Mega-menu open/close logic ─────────────────────────── */
 function closeMega(){document.querySelectorAll('.mega-item.open').forEach(item=>{item.classList.remove('open');item.querySelector('.mega-trigger')?.setAttribute('aria-expanded','false')})}
 document.querySelectorAll('.main-nav').forEach(nav=>{
