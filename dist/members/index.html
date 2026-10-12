@@ -1,1 +1,410 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Dedza Dynamos supporters membership."><title>Members | Dedza Dynamos</title><link rel="icon" href="/assets/brand/dedza-dynamos-crest.png"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/brand.css"><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></head><body><div class="utility"><span>Goshen City Dedza Dynamos</span><div class="utility-links"><a href="/supporters/">Fan support</a></div></div><header class="site-head"><a class="brand" href="/"><span class="mark"><img src="/assets/brand/dedza-dynamos-crest.png" alt=""></span><span class="brand-copy"><strong>Dedza<br>Dynamos</strong><small>The Yellow Boys</small></span></a><nav class="main-nav" aria-label="Main"></nav><div class="head-actions"><button class="search-button" data-search aria-label="Search"><svg class="icon"><use href="/assets/icons.svg#search"></use></svg></button><button class="menu-button" aria-label="Open menu" aria-expanded="false"><svg class="icon"><use href="/assets/icons.svg#menu"></use></svg></button></div></header><nav class="mobile-nav" aria-label="Mobile"></nav><main><section class="page-hero with-image"><img src="/assets/dedza-team-history.jpg" alt="Dedza Dynamos team and supporters"><span class="crumbs"><a href="/">Home</a> / Members</span><div class="page-hero-content"><p class="eyebrow">For the Yellow Boys family</p><h1>Members</h1><p>A fan-focused space for supporter membership, club updates and matchday information.</p></div></section><section class="shell"><div class="support-grid"><article class="support-card"><p class="eyebrow">Dedza Dynamos membership</p><h2>Join the family</h2><p>Supporter membership registration will open here when the club confirms its official membership programme and benefits.</p><a class="button yellow" href="/supporters/">Support the club</a></article><article class="support-card dark"><p class="eyebrow">Already a member?</p><h2>Member sign-in</h2><p>Secure member accounts, benefits and communication preferences will be available when official membership access launches.</p><button class="button outline" data-pending="Member account access is awaiting club confirmation.">Member sign in</button></article></div><div class="notice"><strong>Fans only.</strong> This is the public supporter-membership area. Club staff administration is maintained on a separate private application and is not part of this website.</div></section></main><footer class="site-footer"><div class="footer-bottom"><span>© 2026 Dedza Dynamos</span><span>AstraMind Labs</span></div></footer><div class="site-search"><button class="search-close" aria-label="Close search">×</button><label for="site-search">Search</label><input id="site-search" type="search"><div class="search-results"></div></div><div class="toast"></div><script src="/app.js"></script><script src="/live-data.js" defer></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Dedza Dynamos supporter membership and official fan dashboard. Register, get your digital pass, vote, and access matchday discounts.">
+  <title>Supporter Membership &amp; Fan Dashboard | Dedza Dynamos</title>
+  <link rel="icon" href="/assets/brand/dedza-dynamos-crest.png">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="/nav.css">
+  <link rel="stylesheet" href="/members.css">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="utility">
+    <span>Goshen City Dedza Dynamos</span>
+    <div class="utility-links">
+      <a href="/supporters/">Fan support</a>
+      <a href="/club/#stadium">Dedza Stadium</a>
+    </div>
+  </div>
+
+  <header class="site-head">
+    <a class="brand" href="/">
+      <span class="mark"><img src="/assets/brand/dedza-dynamos-crest.png" alt="Dedza Dynamos Crest"></span>
+      <span class="brand-copy">
+        <strong>Dedza<br>Dynamos</strong>
+        <small>The Yellow Boys</small>
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Main"></nav>
+    <div class="head-actions">
+      <button class="search-button" data-search aria-label="Search">
+        <svg class="icon"><use href="/assets/icons.svg#search"></use></svg>
+      </button>
+      <button class="menu-button" aria-label="Open menu" aria-expanded="false">
+        <svg class="icon"><use href="/assets/icons.svg#menu"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" aria-label="Mobile"></nav>
+
+  <main>
+    <section class="page-hero with-image">
+      <img src="/assets/dedza-team-history.jpg" alt="Dedza Dynamos team and supporters celebrating">
+      <span class="crumbs"><a href="/">Home</a> / Members</span>
+      <div class="page-hero-content">
+        <p class="eyebrow">Official Supporters Portal</p>
+        <h1>Supporter Membership</h1>
+        <p>Join the Yellow Boys family. Register for official supporter membership, access your digital stadium pass, exclusive matchday vouchers, and official player polls.</p>
+      </div>
+    </section>
+
+    <section class="member-portal-shell">
+
+      <!-- ── SECTION A: AUTHENTICATION / REGISTRATION ── -->
+      <div id="member-auth-section">
+        <div class="portal-tabs">
+          <button class="portal-tab-btn active" id="tab-register">Join the Family (Register)</button>
+          <button class="portal-tab-btn" id="tab-signin">Member Sign-In</button>
+        </div>
+
+        <!-- REGISTRATION FORM -->
+        <div class="portal-card" id="form-register">
+          <div style="margin-bottom:1.5rem">
+            <h2 style="font-family:var(--display);font-size:1.8rem;text-transform:uppercase;margin:0 0 .5rem">New Supporter Registration</h2>
+            <p style="color:#666;margin:0">Fill in your details below to activate your digital supporter pass instantly.</p>
+          </div>
+
+          <form class="portal-form-grid">
+            <div class="form-group">
+              <label for="reg-name">Full Name *</label>
+              <input type="text" id="reg-name" required placeholder="e.g. Chimwemwe Banda">
+            </div>
+
+            <div class="form-group">
+              <label for="reg-email">Email Address *</label>
+              <input type="email" id="reg-email" required placeholder="e.g. c.banda@gmail.com">
+            </div>
+
+            <div class="form-group">
+              <label for="reg-phone">Phone Number (Malawi) *</label>
+              <input type="tel" id="reg-phone" required placeholder="e.g. +265 888 123 456">
+            </div>
+
+            <div class="form-group">
+              <label for="reg-district">Home District / City</label>
+              <select id="reg-district">
+                <option value="Dedza" selected>Dedza</option>
+                <option value="Lilongwe">Lilongwe</option>
+                <option value="Blantyre">Blantyre</option>
+                <option value="Zomba">Zomba</option>
+                <option value="Mzuzu">Mzuzu</option>
+                <option value="Ntcheu">Ntcheu</option>
+                <option value="Salima">Salima</option>
+                <option value="Kasungu">Kasungu</option>
+                <option value="Diaspora">Diaspora / Abroad</option>
+                <option value="Other">Other District</option>
+              </select>
+            </div>
+
+            <!-- TIER SELECTOR -->
+            <div class="form-group full-width">
+              <label>Select Membership Tier</label>
+              <div class="tier-selector-grid">
+                <label class="tier-option selected">
+                  <input type="radio" name="tier" value="yellow" checked>
+                  <div class="tier-header">🟡 Yellow Supporter</div>
+                  <div class="tier-price">FREE FAN TIER</div>
+                  <ul class="tier-perks">
+                    <li>Digital Supporter Card</li>
+                    <li>Official WhatsApp alerts</li>
+                    <li>Player of the Month voting</li>
+                  </ul>
+                </label>
+
+                <label class="tier-option">
+                  <input type="radio" name="tier" value="silver">
+                  <div class="tier-header">🥈 Silver Supporter</div>
+                  <div class="tier-price">MWK 15,000 / SEASON</div>
+                  <ul class="tier-perks">
+                    <li>10% Dedza Stadium ticket discount</li>
+                    <li>Free digital match programmes</li>
+                    <li>Priority ticket gate access</li>
+                  </ul>
+                </label>
+
+                <label class="tier-option">
+                  <input type="radio" name="tier" value="gold">
+                  <div class="tier-header">🥇 Gold VIP Member</div>
+                  <div class="tier-price">MWK 35,000 / SEASON</div>
+                  <ul class="tier-perks">
+                    <li>15% official jersey discount</li>
+                    <li>VIP lounge access at Dedza Stadium</li>
+                    <li>Annual AGM voting &amp; meet squad</li>
+                  </ul>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-player">Favorite Player</label>
+              <select id="reg-player">
+                <option value="Clement Nyondo">Clement Nyondo (Forward - Golden Boot)</option>
+                <option value="Chikondi Mbeta">Chikondi Mbeta (Forward - Castel Finalist)</option>
+                <option value="Emmanuel Kondowe">Emmanuel Kondowe (Goalkeeper)</option>
+                <option value="Patrick Mwale">Patrick Mwale (Captain - Defender)</option>
+                <option value="Gift Chirwa">Gift Chirwa (Defender)</option>
+                <option value="Isaac Phiri">Isaac Phiri (Midfielder)</option>
+                <option value="Lovemore Banda">Lovemore Banda (Midfielder)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-pin">Create 4-Digit Member PIN</label>
+              <input type="password" id="reg-pin" maxlength="6" placeholder="e.g. 1926" value="1234">
+            </div>
+
+            <div class="full-width" style="margin-top:1rem">
+              <button type="submit" class="button yellow" style="width:100%;height:52px;font-size:.85rem">
+                Activate Official Membership →
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- SIGN IN FORM -->
+        <div class="portal-card" id="form-signin" style="display:none;max-width:540px;margin:0 auto">
+          <div style="margin-bottom:1.5rem">
+            <h2 style="font-family:var(--display);font-size:1.8rem;text-transform:uppercase;margin:0 0 .5rem">Member Sign-In</h2>
+            <p style="color:#666;margin:0">Enter your Member ID, email or registered phone number.</p>
+          </div>
+
+          <form style="display:flex;flex-direction:column;gap:1.2rem">
+            <div class="form-group">
+              <label for="login-cred">Email, Phone, or Member ID</label>
+              <input type="text" id="login-cred" required placeholder="e.g. DD-2026-0842 or your email">
+            </div>
+
+            <div class="form-group">
+              <label for="login-pin">Member PIN / Password</label>
+              <input type="password" id="login-pin" placeholder="Enter your PIN">
+            </div>
+
+            <button type="submit" class="button yellow" style="width:100%;height:50px">
+              Sign In to Member Portal →
+            </button>
+
+            <div style="text-align:center;margin-top:.8rem;padding-top:1.2rem;border-top:1px solid #eee">
+              <button type="button" id="demo-login-btn" class="button outline" style="width:100%;font-size:.72rem">
+                ⚡ Quick Demo Login (Chimwemwe Banda - Gold VIP)
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ── SECTION B: ACTIVE MEMBER DASHBOARD ── -->
+      <div id="member-dash-section" style="display:none">
+
+        <!-- DASHBOARD HEADER -->
+        <div class="member-dash-head">
+          <div class="member-greeting">
+            <p class="eyebrow">Welcome to your Fan Portal</p>
+            <h2>Hello, <span id="dash-member-name">Member</span>!</h2>
+            <p>Membership status: <strong style="color:#27ae60">● Active Member (2026/27)</strong> · <span id="dash-member-tier">Gold VIP</span></p>
+          </div>
+          <button id="member-signout-btn" class="button outline" style="min-height:40px;padding:0 1rem;font-size:.7rem">
+            Sign Out
+          </button>
+        </div>
+
+        <!-- ROW 1: DIGITAL CARD & PERKS -->
+        <div class="dash-grid-2">
+
+          <!-- DIGITAL MEMBERSHIP CARD -->
+          <div>
+            <h3 style="font-family:var(--display);font-size:1.3rem;text-transform:uppercase;margin:0 0 1rem">Official Digital Pass</h3>
+            <div class="digital-card-wrap">
+              <div class="membership-card gold-card" id="digital-membership-card">
+                <div class="card-top">
+                  <span class="card-club-name">DEDZA DYNAMOS FC</span>
+                  <img src="/assets/brand/dedza-dynamos-crest.png" alt="Crest" class="card-crest">
+                </div>
+                <div class="card-mid">
+                  <div class="card-chip"></div>
+                  <div class="card-member-id" id="card-id-text">DD-2026-0842</div>
+                </div>
+                <div class="card-bottom">
+                  <div>
+                    <div class="card-member-name" id="card-holder-name">CHIMWEMWE BANDA</div>
+                    <span class="card-tier-pill" id="card-tier-badge">🥇 GOLD VIP</span>
+                  </div>
+                  <div class="card-validity">
+                    <span id="card-district-text">DEDZA, MALAWI</span>
+                    <strong>SEASON 2026/27</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:1.2rem;text-align:center">
+              <button id="print-card-btn" class="button outline" style="width:100%;font-size:.72rem">
+                🖨️ Print / Save Digital Pass
+              </button>
+            </div>
+          </div>
+
+          <!-- PERKS & DISCOUNTS -->
+          <div>
+            <h3 style="font-family:var(--display);font-size:1.3rem;text-transform:uppercase;margin:0 0 1rem">Matchday Perks &amp; Vouchers</h3>
+            <div style="display:flex;flex-direction:column;gap:1rem">
+
+              <div class="perk-box">
+                <div>
+                  <div class="perk-title">
+                    <span>🎟️</span>
+                    <span>10% Matchday Ticket Discount</span>
+                  </div>
+                  <p style="font-size:.82rem;color:#666;margin:.4rem 0 0">Show this promo code at Dedza Stadium ticket gates or online booking.</p>
+                </div>
+                <div class="code-badge">
+                  <span>YELLOWBOYS10</span>
+                  <button class="btn-copy" id="btn-copy-ticket" onclick="copyDiscountCode('YELLOWBOYS10','btn-copy-ticket')">Copy Code</button>
+                </div>
+              </div>
+
+              <div class="perk-box">
+                <div>
+                  <div class="perk-title">
+                    <span>👕</span>
+                    <span>15% Off Official Replica Kits</span>
+                  </div>
+                  <p style="font-size:.82rem;color:#666;margin:.4rem 0 0">Exclusive member discount for the 2026/27 Yellow Boys jersey.</p>
+                </div>
+                <div class="code-badge">
+                  <span>DEDZAKIT15</span>
+                  <button class="btn-copy" id="btn-copy-kit" onclick="copyDiscountCode('DEDZAKIT15','btn-copy-kit')">Copy Code</button>
+                </div>
+              </div>
+
+              <div class="perk-box">
+                <div>
+                  <div class="perk-title">
+                    <span>💬</span>
+                    <span>Verified WhatsApp Fan Group</span>
+                  </div>
+                  <p style="font-size:.82rem;color:#666;margin:.4rem 0 0">Official team news, verified lineups, and fixture alerts sent straight to your phone.</p>
+                </div>
+                <a href="https://whatsapp.com" target="_blank" rel="noopener" class="button yellow" style="font-size:.72rem;min-height:38px">
+                  Join Official Fan Group →
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ROW 2: FAN VOTING WIDGET -->
+        <div class="voting-widget">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem">
+            <div>
+              <p class="eyebrow" style="margin:0 0 .2rem">Supporter Poll</p>
+              <h3 style="font-family:var(--display);font-size:1.6rem;text-transform:uppercase;margin:0">Player of the Month (October 2026)</h3>
+            </div>
+            <span class="badge-pill" style="background:var(--yellow);color:#111;font-weight:700;padding:.3rem .8rem;border-radius:20px;font-size:.75rem">Members Only</span>
+          </div>
+          <p style="color:#666;font-size:.88rem;margin-top:.4rem">Every verified supporter vote helps determine the official Dedza Dynamos Player of the Month award.</p>
+
+          <div class="candidates-grid">
+            <div class="candidate-card" data-player="clement">
+              <input type="radio" name="player-vote" value="clement" style="display:none">
+              <img src="/assets/players/clement-nyondo.jpg" alt="Clement Nyondo">
+              <strong>Clement Nyondo</strong>
+              <small>Forward · #09</small>
+              <div class="voted-tag" style="display:none;margin-top:.4rem"><span class="badge" style="background:#27ae60;color:#fff;font-size:.65rem">YOUR VOTE ✓</span></div>
+            </div>
+
+            <div class="candidate-card" data-player="chikondi">
+              <input type="radio" name="player-vote" value="chikondi" style="display:none">
+              <img src="/assets/players/chikondi-mbeta.jpg" alt="Chikondi Mbeta">
+              <strong>Chikondi Mbeta</strong>
+              <small>Forward · #10</small>
+              <div class="voted-tag" style="display:none;margin-top:.4rem"><span class="badge" style="background:#27ae60;color:#fff;font-size:.65rem">YOUR VOTE ✓</span></div>
+            </div>
+
+            <div class="candidate-card" data-player="emmanuel">
+              <input type="radio" name="player-vote" value="emmanuel" style="display:none">
+              <img src="/assets/players/emmanuel-kondowe.jpg" alt="Emmanuel Kondowe">
+              <strong>Emmanuel Kondowe</strong>
+              <small>Goalkeeper · #01</small>
+              <div class="voted-tag" style="display:none;margin-top:.4rem"><span class="badge" style="background:#27ae60;color:#fff;font-size:.65rem">YOUR VOTE ✓</span></div>
+            </div>
+
+            <div class="candidate-card" data-player="patrick">
+              <input type="radio" name="player-vote" value="patrick" style="display:none">
+              <img src="/assets/players/patrick-mwale.jpg" alt="Patrick Mwale">
+              <strong>Patrick Mwale</strong>
+              <small>Captain · #05</small>
+              <div class="voted-tag" style="display:none;margin-top:.4rem"><span class="badge" style="background:#27ae60;color:#fff;font-size:.65rem">YOUR VOTE ✓</span></div>
+            </div>
+          </div>
+
+          <button id="submit-vote-btn" class="button yellow" style="width:100%;font-size:.8rem;height:46px">
+            Cast Official Vote →
+          </button>
+        </div>
+
+        <!-- ROW 3: PROFILE SETTINGS -->
+        <div class="portal-card" style="margin-top:2rem">
+          <h3 style="font-family:var(--display);font-size:1.4rem;text-transform:uppercase;margin:0 0 .5rem">Member Profile &amp; Preferences</h3>
+          <p style="color:#666;margin:0 0 1.2rem;font-size:.88rem">Keep your contact information up to date to receive ticket notifications and club alerts.</p>
+
+          <form id="member-profile-form" class="portal-form-grid">
+            <div class="form-group">
+              <label for="prof-phone">Phone Number</label>
+              <input type="tel" id="prof-phone">
+            </div>
+
+            <div class="form-group">
+              <label for="prof-district">Home District</label>
+              <input type="text" id="prof-district">
+            </div>
+
+            <div class="form-group full-width">
+              <label for="prof-pref">Preferred Communication Channel</label>
+              <select id="prof-pref">
+                <option value="whatsapp">WhatsApp (Instant matchday alerts)</option>
+                <option value="sms">SMS (Direct text notifications)</option>
+                <option value="email">Email (Weekly club newsletters)</option>
+              </select>
+            </div>
+
+            <div class="full-width" style="margin-top:.5rem">
+              <button type="submit" class="button" style="font-size:.78rem">
+                Save Profile Changes ✓
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <span>© 2026 Dedza Dynamos Football Club</span>
+      <span>Official Supporters Portal · AstraMind Labs</span>
+    </div>
+  </footer>
+
+  <div class="site-search">
+    <button class="search-close" aria-label="Close search">×</button>
+    <label for="site-search">Search</label>
+    <input id="site-search" type="search">
+    <div class="search-results"></div>
+  </div>
+
+  <div class="toast"></div>
+
+  <script src="/app.js"></script>
+  <script src="/live-data.js" defer></script>
+  <script src="/members.js" defer></script>
+</body>
+</html>

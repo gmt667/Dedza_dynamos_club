@@ -1,0 +1,337 @@
+{
+  "settings": {
+    "club_name": "Dedza Dynamos Football Club",
+    "nickname": "The Yellow Boys / Asilikali a ku Dedza",
+    "stadium": "Dedza Stadium",
+    "capacity": "10,000",
+    "contact_email": "info@dedzadynamosfc.mw",
+    "contact_phone": "+265 888 123 456",
+    "founded": "2017",
+    "league": "FDH Bank Premiership",
+    "city": "Dedza",
+    "country": "Malawi"
+  },
+  "updates": [
+    {
+      "id": "upd_01",
+      "title": "The road to a first Castel Cup final",
+      "summary": "A stoppage-time equaliser and a dramatic shootout carried Dedza onto the national stage. Dedza defeated Creck Sporting and Ekhaya before Gift Magola's stoppage-time equaliser forced a semifinal shootout against Blue Eagles.",
+      "status": "published",
+      "publishedAt": "2026-02-19 14:00:00",
+      "createdAt": "2026-02-19 14:00:00",
+      "audience": "public"
+    },
+    {
+      "id": "upd_02",
+      "title": "A new board for a new era",
+      "summary": "Reported leadership changes mark the next chapter in the club's growth. The reported nine-member executive board is chaired by Paul Mzungu, focusing on sporting excellence and community development.",
+      "status": "published",
+      "publishedAt": "2026-10-05 09:30:00",
+      "createdAt": "2026-10-05 09:30:00",
+      "audience": "public"
+    },
+    {
+      "id": "upd_03",
+      "title": "Dedza finish as cup runners-up",
+      "summary": "Chikondi Mbeta scored late as the Yellow Boys contested their first national cup final at the Bingu National Stadium in Lilongwe against Big Bullets.",
+      "status": "published",
+      "publishedAt": "2026-02-21 17:30:00",
+      "createdAt": "2026-02-21 17:30:00",
+      "audience": "public"
+    },
+    {
+      "id": "upd_04",
+      "title": "Clement Nyondo wins Golden Boot",
+      "summary": "The prolific striker concluded a landmark elite season with a reported 16 goals, becoming the top goalscorer in the national league.",
+      "status": "published",
+      "publishedAt": "2023-06-30 18:00:00",
+      "createdAt": "2023-06-30 18:00:00",
+      "audience": "public"
+    },
+    {
+      "id": "upd_05",
+      "title": "Pre-season training underway at Dedza Stadium",
+      "summary": "The squad reports back ahead of the new FDH Bank Premiership campaign. Tactical conditioning and fitness drills commenced with full first-team participation.",
+      "status": "published",
+      "publishedAt": "2026-07-01 10:00:00",
+      "createdAt": "2026-07-01 10:00:00",
+      "audience": "public"
+    }
+  ],
+  "matches": [
+    {
+      "id": "mat_01",
+      "date": "2026-10-11",
+      "time": "14:30",
+      "home": "Dedza Dynamos",
+      "away": "Masters FC",
+      "venue": "Dedza Stadium",
+      "competition": "FDH Bank Premiership",
+      "status": "upcoming",
+      "score": "",
+      "round": "Matchday 16"
+    },
+    {
+      "id": "mat_02",
+      "date": "2026-10-17",
+      "time": "14:30",
+      "home": "Civil Service United",
+      "away": "Dedza Dynamos",
+      "venue": "CIVO Stadium",
+      "competition": "FDH Bank Premiership",
+      "status": "upcoming",
+      "score": "",
+      "round": "Matchday 17"
+    },
+    {
+      "id": "mat_03",
+      "date": "2026-10-25",
+      "time": "14:30",
+      "home": "Dedza Dynamos",
+      "away": "Moyale Barracks",
+      "venue": "Dedza Stadium",
+      "competition": "FDH Bank Premiership",
+      "status": "upcoming",
+      "score": "",
+      "round": "Matchday 18"
+    },
+    {
+      "id": "mat_04",
+      "date": "2026-09-09",
+      "time": "14:30",
+      "home": "Dedza Dynamos",
+      "away": "Luanar Mitundu",
+      "venue": "Dedza Stadium",
+      "competition": "FDH Bank Premiership",
+      "status": "full_time",
+      "score": "0–0",
+      "round": "Matchday 15"
+    },
+    {
+      "id": "mat_05",
+      "date": "2026-07-25",
+      "time": "14:30",
+      "home": "Dedza Dynamos",
+      "away": "FCB Big Bullets",
+      "venue": "Dedza Stadium",
+      "competition": "FDH Bank Premiership",
+      "status": "full_time",
+      "score": "1–0",
+      "round": "Matchday 10"
+    },
+    {
+      "id": "mat_06",
+      "date": "2026-02-21",
+      "time": "15:00",
+      "home": "FCB Nyasa Big Bullets",
+      "away": "Dedza Dynamos",
+      "venue": "Bingu National Stadium",
+      "competition": "Castel Challenge Cup",
+      "status": "full_time",
+      "score": "2–1",
+      "round": "Final"
+    },
+    {
+      "id": "mat_07",
+      "date": "2026-10-31",
+      "time": "14:30",
+      "home": "Dedza Dynamos",
+      "away": "Creck Sporting",
+      "venue": "Dedza Stadium",
+      "competition": "Castel Challenge Cup",
+      "status": "upcoming",
+      "score": "",
+      "round": "Round of 16"
+    },
+    {
+      "id": "mat_08",
+      "date": "2026-11-08",
+      "time": "14:30",
+      "home": "Silver Strikers",
+      "away": "Dedza Dynamos",
+      "venue": "Silver Stadium",
+      "competition": "FDH Bank Premiership",
+      "status": "upcoming",
+      "score": "",
+      "round": "Matchday 19"
+    },
+    {
+      "id": "mat_09",
+      "date": "2026-11-22",
+      "time": "14:30",
+      "home": "Dedza Dynamos",
+      "away": "FCB Nyasa Big Bullets",
+      "venue": "Dedza Stadium",
+      "competition": "FDH Bank Premiership",
+      "status": "upcoming",
+      "score": "",
+      "round": "Matchday 20"
+    }
+  ],
+  "players": [
+    {
+      "id": 1,
+      "name": "Chikondi Mbeta",
+      "number": 10,
+      "position": "Forward",
+      "nationality": "Malawian",
+      "notes": "Scored in the 2026 Castel Cup Final."
+    },
+    {
+      "id": 2,
+      "name": "Clement Nyondo",
+      "number": 9,
+      "position": "Forward",
+      "nationality": "Malawian",
+      "notes": "League Golden Boot winner 2022/23 with a reported 16 goals."
+    },
+    {
+      "id": 3,
+      "name": "Emmanuel Kondowe",
+      "number": 1,
+      "position": "Goalkeeper",
+      "nationality": "Malawian",
+      "notes": "First-choice goalkeeper throughout the Castel Cup run."
+    },
+    {
+      "id": 4,
+      "name": "Patrick Mwale",
+      "number": 5,
+      "position": "Defender",
+      "nationality": "Malawian",
+      "notes": "Club captain. Leader in the backline since 2022."
+    },
+    {
+      "id": 5,
+      "name": "Gift Chirwa",
+      "number": 6,
+      "position": "Defender",
+      "nationality": "Malawian",
+      "notes": "Resolute center back and aerial winner."
+    },
+    {
+      "id": 6,
+      "name": "Isaac Phiri",
+      "number": 8,
+      "position": "Midfielder",
+      "nationality": "Malawian",
+      "notes": "Engine of the midfield since promotion."
+    },
+    {
+      "id": 7,
+      "name": "Lovemore Banda",
+      "number": 7,
+      "position": "Midfielder",
+      "nationality": "Malawian",
+      "notes": "Creative attacking midfielder and playmaker."
+    },
+    {
+      "id": 8,
+      "name": "Francis Kamanga",
+      "number": 3,
+      "position": "Defender",
+      "nationality": "Malawian",
+      "notes": "Dynamic full-back with defensive coverage."
+    }
+  ],
+  "partners": [
+    {
+      "id": 1,
+      "name": "Goshen City",
+      "category": "Principal Title Sponsor",
+      "tier": "Platinum",
+      "status": "Active",
+      "url": "https://goshencity.mw"
+    },
+    {
+      "id": 2,
+      "name": "FDH Bank",
+      "category": "Competition Sponsor",
+      "tier": "Gold",
+      "status": "Active",
+      "url": "https://fdh.co.mw"
+    },
+    {
+      "id": 3,
+      "name": "Castel Malawi",
+      "category": "Challenge Cup Partner",
+      "tier": "Gold",
+      "status": "Active",
+      "url": "https://castel-malawi.com"
+    }
+  ],
+  "members": [
+    {
+      "id": "DD-2026-2454",
+      "fullName": "Test Supporter",
+      "email": "test.supporter@dedza.mw",
+      "phone": "+265 888 999 111",
+      "tier": "gold",
+      "district": "Dedza",
+      "favoritePlayer": "Clement Nyondo",
+      "status": "active",
+      "notificationPref": "whatsapp",
+      "joinedAt": "2026-10-12T12:36:32.601Z"
+    },
+    {
+      "id": "DD-2026-0101",
+      "fullName": "Chimwemwe Banda",
+      "email": "c.banda@gmail.com",
+      "phone": "+265 888 123 456",
+      "tier": "gold",
+      "district": "Dedza",
+      "favoritePlayer": "Clement Nyondo",
+      "status": "active",
+      "notificationPref": "whatsapp",
+      "joinedAt": "2026-10-01 10:00:00"
+    },
+    {
+      "id": "DD-2026-0102",
+      "fullName": "Tamandani Phiri",
+      "email": "t.phiri@yahoo.com",
+      "phone": "+265 999 456 789",
+      "tier": "silver",
+      "district": "Lilongwe",
+      "favoritePlayer": "Chikondi Mbeta",
+      "status": "active",
+      "notificationPref": "whatsapp",
+      "joinedAt": "2026-10-03 14:30:00"
+    },
+    {
+      "id": "DD-2026-0103",
+      "fullName": "Blessings Moyo",
+      "email": "b.moyo@outlook.com",
+      "phone": "+265 881 789 012",
+      "tier": "yellow",
+      "district": "Dedza",
+      "favoritePlayer": "Emmanuel Kondowe",
+      "status": "active",
+      "notificationPref": "sms",
+      "joinedAt": "2026-10-05 09:15:00"
+    },
+    {
+      "id": "DD-2026-0104",
+      "fullName": "Grace Chirwa",
+      "email": "grace.chirwa@gmail.com",
+      "phone": "+265 995 234 567",
+      "tier": "silver",
+      "district": "Blantyre",
+      "favoritePlayer": "Patrick Mwale",
+      "status": "active",
+      "notificationPref": "email",
+      "joinedAt": "2026-10-07 16:45:00"
+    },
+    {
+      "id": "DD-2026-0105",
+      "fullName": "Kondwani Chisi",
+      "email": "kondwani.c@gmail.com",
+      "phone": "+265 884 567 890",
+      "tier": "gold",
+      "district": "Dedza",
+      "favoritePlayer": "Clement Nyondo",
+      "status": "active",
+      "notificationPref": "whatsapp",
+      "joinedAt": "2026-10-09 11:20:00"
+    }
+  ]
+}

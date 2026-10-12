@@ -112,6 +112,13 @@ const defaultData = {
     { id: 2, name: 'FDH Bank', category: 'Competition Sponsor', tier: 'Gold', status: 'Active', url: 'https://fdh.co.mw' },
     { id: 3, name: 'Castel Malawi', category: 'Challenge Cup Partner', tier: 'Gold', status: 'Active', url: 'https://castel-malawi.com' },
   ],
+  members: [
+    { id: 'DD-2026-0101', fullName: 'Chimwemwe Banda', email: 'c.banda@gmail.com', phone: '+265 888 123 456', tier: 'gold', district: 'Dedza', favoritePlayer: 'Clement Nyondo', status: 'active', notificationPref: 'whatsapp', joinedAt: '2026-10-01 10:00:00' },
+    { id: 'DD-2026-0102', fullName: 'Tamandani Phiri', email: 't.phiri@yahoo.com', phone: '+265 999 456 789', tier: 'silver', district: 'Lilongwe', favoritePlayer: 'Chikondi Mbeta', status: 'active', notificationPref: 'whatsapp', joinedAt: '2026-10-03 14:30:00' },
+    { id: 'DD-2026-0103', fullName: 'Blessings Moyo', email: 'b.moyo@outlook.com', phone: '+265 881 789 012', tier: 'yellow', district: 'Dedza', favoritePlayer: 'Emmanuel Kondowe', status: 'active', notificationPref: 'sms', joinedAt: '2026-10-05 09:15:00' },
+    { id: 'DD-2026-0104', fullName: 'Grace Chirwa', email: 'grace.chirwa@gmail.com', phone: '+265 995 234 567', tier: 'silver', district: 'Blantyre', favoritePlayer: 'Patrick Mwale', status: 'active', notificationPref: 'email', joinedAt: '2026-10-07 16:45:00' },
+    { id: 'DD-2026-0105', fullName: 'Kondwani Chisi', email: 'kondwani.c@gmail.com', phone: '+265 884 567 890', tier: 'gold', district: 'Dedza', favoritePlayer: 'Clement Nyondo', status: 'active', notificationPref: 'whatsapp', joinedAt: '2026-10-09 11:20:00' },
+  ],
 };
 
 // Load saved data or initialize
@@ -119,6 +126,7 @@ let data = defaultData;
 try {
   if (existsSync(dataFilePath)) {
     data = JSON.parse(readFileSync(dataFilePath, 'utf8'));
+    if (!data.members) data.members = defaultData.members;
   }
 } catch {
   data = defaultData;
@@ -396,6 +404,151 @@ async function handleApi(req, res, pathname) {
   if (pathname === '/api/public/partners') {
     sendJson(res, 200, { partners: data.partners });
     return true;
+  }
+
+  // 7. MEMBERS (ADMIN & PUBLIC)
+  if (pathname === '/api/members') {
+    if (req.method === 'GET') {
+      sendJson(res, 200, { members: data.members || [] });
+      return true;
+    }
+    if (req.method === 'POST') {
+      const b = await parseBody(req);
+      const randomDigits = Math.floor(1000 + Math.random() * 9000);
+      const newMember = {
+        id: b.id || `DD-2026-${randomDigits}`,
+        fullName: b.fullName || 'Member',
+        email: b.email || '',
+        phone: b.phone || '',
+        tier: b.tier || 'yellow',
+        district: b.district || 'Dedza',
+        favoritePlayer: b.favoritePlayer || 'Clement Nyondo',
+        status: b.status || 'active',
+        notificationPref: b.notificationPref || 'whatsapp',
+        joinedAt: new Date().toISOString(),
+      };
+      if (!data.members) data.members = [];
+      data.members.unshift(newMember);
+      saveData();
+      sendJson(res, 201, { member: newMember });
+      return true;
+    }
+    if (req.method === 'PATCH') {
+      const b = await parseBody(req);
+      const item = (data.members || []).find(m => String(m.id) === String(b.id));
+      if (item) {
+        Object.assign(item, b);
+        saveData();
+      }
+      sendJson(res, 200, { success: true, member: item });
+      return true;
+    }
+    if (req.method === 'DELETE') {
+      const b = await parseBody(req);
+      data.members = (data.members || []).filter(m => String(m.id) !== String(b.id));
+      saveData();
+      sendJson(res, 200, { success: true });
+      return true;
+    }
+  }
+
+  if (pathname === '/api/public/members') {
+    if (req.method === 'GET') {
+      const all = data.members || [];
+      sendJson(res, 200, {
+        totalMembers: all.length,
+        tiers: {
+          yellow: all.filter(m => m.tier === 'yellow').length,
+          silver: all.filter(m => m.tier === 'silver').length,
+          gold: all.filter(m => m.tier === 'gold').length,
+        },
+        members: all.map(({ passwordHash, ...m }) => m)
+      });
+      return true;
+    }
+    if (req.method === 'POST') {
+      const b = await parseBody(req);
+      const action = b.action || 'register';
+
+      if (action === 'register') {
+        const { fullName, email, phone, tier = 'yellow', district = 'Dedza', favoritePlayer = '' } = b;
+        if (!fullName || !fullName.trim()) {
+          sendJson(res, 400, { error: 'Full name is required.' });
+          return true;
+        }
+        if (!email && !phone) {
+          sendJson(res, 400, { error: 'Email or phone number is required.' });
+          return true;
+        }
+
+        // Check if existing
+        const existing = (data.members || []).find(m =>
+          (email && m.email && m.email.toLowerCase() === email.toLowerCase().trim()) ||
+          (phone && m.phone && m.phone === phone.trim())
+        );
+
+        if (existing) {
+          sendJson(res, 200, {
+            success: true,
+            message: 'Welcome back! You are already registered.',
+            member: existing,
+            isExisting: true
+          });
+          return true;
+        }
+
+        const randomDigits = Math.floor(1000 + Math.random() * 9000);
+        const memberId = `DD-2026-${randomDigits}`;
+        const newMember = {
+          id: memberId,
+          fullName: fullName.trim(),
+          email: (email || '').trim().toLowerCase(),
+          phone: (phone || '').trim(),
+          tier: ['yellow', 'silver', 'gold'].includes(tier) ? tier : 'yellow',
+          district: district.trim() || 'Dedza',
+          favoritePlayer: favoritePlayer.trim() || 'Clement Nyondo',
+          status: 'active',
+          notificationPref: 'whatsapp',
+          joinedAt: new Date().toISOString(),
+        };
+
+        if (!data.members) data.members = [];
+        data.members.unshift(newMember);
+        saveData();
+
+        sendJson(res, 201, {
+          success: true,
+          message: 'Membership registered successfully! Welcome to the Yellow Boys family.',
+          member: newMember
+        });
+        return true;
+      }
+
+      if (action === 'login') {
+        const { credential = '' } = b;
+        const cleanCred = credential.trim().toLowerCase();
+        const found = (data.members || []).find(m =>
+          m.id.toLowerCase() === cleanCred ||
+          (m.email && m.email.toLowerCase() === cleanCred) ||
+          (m.phone && m.phone === cleanCred)
+        );
+
+        if (!found) {
+          sendJson(res, 404, { error: 'No membership record found. Please register first.' });
+          return true;
+        }
+
+        sendJson(res, 200, {
+          success: true,
+          message: 'Signed in successfully.',
+          member: found
+        });
+        return true;
+      }
+
+      sendJson(res, 400, { error: 'Invalid action.' });
+      return true;
+    }
   }
 
   // Unknown API route
