@@ -1,9 +1,18 @@
 if(!document.querySelector('link[href="/nav.css"]')){const navStyles=document.createElement('link');navStyles.rel='stylesheet';navStyles.href='/nav.css';document.head.append(navStyles)}
 const DEDZA_API_BASE=String(window.DEDZA_API_BASE||'https://dedza-dynamos-public-data.mwalwandadesire5.chatgpt.site').replace(/\/$/,'');
 window.DEDZA_API_BASE=DEDZA_API_BASE;
-document.querySelectorAll('.footer-bottom span').forEach((item)=>{
-  if(item.textContent.includes('concept')) item.textContent=item.textContent.replace(/\s*concept/i,'');
-  if(item.textContent.includes('AstraMind')) item.textContent='Dedza Dynamos FC';
+document.querySelectorAll('.footer-bottom').forEach((footerBottom)=>{
+  footerBottom.querySelectorAll('span').forEach((item)=>{
+    if(item.textContent.includes('concept')) item.textContent=item.textContent.replace(/\s*concept/i,'');
+    if(/astramind/i.test(item.textContent)) item.remove();
+  });
+  const devCredit=footerBottom.querySelector('.developer-credit');
+  if(!devCredit){
+    footerBottom.insertAdjacentHTML('beforeend','<a class="developer-credit" href="https://astramindlabs.page.gd/?i=1" target="_blank" rel="noopener">Built by Astramind Labs</a>');
+  } else {
+    devCredit.href='https://astramindlabs.page.gd/?i=1';
+    devCredit.textContent='Built by Astramind Labs';
+  }
 });
 const menu=document.querySelector('.menu-button');const mobile=document.querySelector('.mobile-nav');
 const primaryLinks=[['News','/news/'],['Video','/media/'],['Fixtures','/matches/'],['Tickets','/tickets/'],['Shop','/shop/'],['Players','/team/'],['Club','/club/']];

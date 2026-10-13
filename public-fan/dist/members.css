@@ -1,0 +1,453 @@
+/* members.css — Dedza Dynamos Supporter Membership & Fan Dashboard */
+
+.member-portal-shell {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+/* Tabs */
+.portal-tabs {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid var(--line, #e2e4dc);
+  padding-bottom: .25rem;
+}
+
+.portal-tab-btn {
+  background: transparent;
+  border: 0;
+  font-family: var(--display, 'Outfit', sans-serif);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  padding: .75rem 1.4rem;
+  cursor: pointer;
+  color: #777;
+  position: relative;
+  transition: color .2s, border-color .2s;
+}
+
+.portal-tab-btn.active {
+  color: var(--ink, #111);
+}
+
+.portal-tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--yellow, #f4c900);
+  border-radius: 2px 2px 0 0;
+}
+
+/* Form Container */
+.portal-card {
+  background: #fff;
+  border: 1px solid var(--line, #e2e4dc);
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.04);
+}
+
+.portal-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.portal-form-grid .full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.form-group label {
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  padding: .75rem 1rem;
+  border: 1.5px solid var(--line, #d9dbd5);
+  border-radius: 8px;
+  font-size: .95rem;
+  font-family: inherit;
+  background: #fdfdfc;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #111;
+  box-shadow: 0 0 0 3px rgba(244, 201, 0, .35);
+  background: #fff;
+}
+
+/* Tier Selector Grid */
+.tier-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: .4rem;
+}
+
+.tier-option {
+  position: relative;
+  border: 2px solid var(--line, #d9dbd5);
+  border-radius: 10px;
+  padding: 1.2rem;
+  cursor: pointer;
+  transition: all .2s;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.tier-option:hover {
+  border-color: #999;
+}
+
+.tier-option.selected {
+  border-color: var(--yellow, #f4c900);
+  background: #fffdf2;
+  box-shadow: 0 4px 14px rgba(244, 201, 0, .25);
+}
+
+.tier-option input[type="radio"] {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  accent-color: #111;
+}
+
+.tier-header {
+  font-family: var(--display, sans-serif);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  margin-bottom: .25rem;
+}
+
+.tier-price {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--gold, #b79700);
+  margin-bottom: .6rem;
+}
+
+.tier-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: .8rem;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+
+.tier-perks li::before {
+  content: "✓ ";
+  color: #27ae60;
+  font-weight: bold;
+}
+
+/* ── MEMBER DASHBOARD STYLES ── */
+.member-dash-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line, #ddd);
+}
+
+.member-greeting h2 {
+  font-family: var(--display, sans-serif);
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin: 0 0 .25rem;
+}
+
+.member-greeting p {
+  color: #666;
+  margin: 0;
+  font-size: .92rem;
+}
+
+/* Digital Membership Card */
+.digital-card-wrap {
+  perspective: 1000px;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.membership-card {
+  width: 100%;
+  aspect-ratio: 1.586 / 1;
+  background: linear-gradient(135deg, #181916 0%, #292a25 50%, #11120f 100%);
+  color: #fff;
+  border-radius: 16px;
+  padding: 1.5rem 1.8rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .35), 0 0 0 1px rgba(255, 255, 255, .1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.membership-card::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  right: -30%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(244, 201, 0, .2) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.membership-card.gold-card {
+  background: linear-gradient(135deg, #2b2308 0%, #3e330a 45%, #191404 100%);
+  border: 1px solid rgba(244, 201, 0, .4);
+}
+
+.membership-card.silver-card {
+  background: linear-gradient(135deg, #232527 0%, #3a3e42 50%, #18191a 100%);
+  border: 1px solid rgba(200, 205, 210, .35);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.card-club-name {
+  font-family: var(--display, sans-serif);
+  font-size: .95rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--yellow, #f4c900);
+}
+
+.card-crest {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.card-mid {
+  position: relative;
+  z-index: 2;
+  margin: .4rem 0;
+}
+
+.card-chip {
+  width: 38px;
+  height: 28px;
+  background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+  border-radius: 5px;
+  margin-bottom: .6rem;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.3);
+  position: relative;
+}
+
+.card-member-id {
+  font-family: var(--display, 'Outfit', sans-serif);
+  font-size: 1.4rem;
+  letter-spacing: .12em;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,.6);
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+}
+
+.card-member-name {
+  font-family: var(--display, sans-serif);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  line-height: 1.1;
+}
+
+.card-tier-pill {
+  display: inline-block;
+  padding: .25rem .65rem;
+  background: var(--yellow, #f4c900);
+  color: #111;
+  font-weight: 800;
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  border-radius: 4px;
+  margin-top: .3rem;
+}
+
+.card-validity {
+  text-align: right;
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #bbb;
+}
+
+.card-validity strong {
+  display: block;
+  font-size: .85rem;
+  color: #fff;
+}
+
+/* Dashboard Sections */
+.dash-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.perk-box {
+  background: #fff;
+  border: 1px solid var(--line, #e2e4dc);
+  border-radius: 10px;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.perk-title {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  font-family: var(--display, sans-serif);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+}
+
+.code-badge {
+  background: #f4f3ef;
+  border: 1.5px dashed #111;
+  padding: .6rem 1rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--display, monospace);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.btn-copy {
+  background: #111;
+  color: #fff;
+  border: 0;
+  padding: .4rem .8rem;
+  font-size: .72rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-copy:hover {
+  background: var(--yellow, #f4c900);
+  color: #111;
+}
+
+/* Fan Voting Widget */
+.voting-widget {
+  background: #fff;
+  border: 1px solid var(--line, #e2e4dc);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.candidates-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.candidate-card {
+  border: 2px solid var(--line, #d9dbd5);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s;
+  background: #fff;
+}
+
+.candidate-card:hover {
+  border-color: #111;
+}
+
+.candidate-card.voted {
+  border-color: var(--yellow, #f4c900);
+  background: #fffdf2;
+}
+
+.candidate-card img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto .6rem;
+  border: 3px solid #111;
+}
+
+.candidate-card strong {
+  display: block;
+  font-size: .9rem;
+  font-family: var(--display, sans-serif);
+  text-transform: uppercase;
+}
+
+.candidate-card small {
+  color: #777;
+  font-size: .75rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dash-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .candidates-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tier-selector-grid {
+    grid-template-columns: 1fr;
+  }
+  .portal-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

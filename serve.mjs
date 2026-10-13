@@ -2,7 +2,7 @@
  * Dedza Dynamos — Public Site Preview & Live API Server
  * Port: 4173 (Access: http://127.0.0.1:4173/)
  */
-import { createReadStream, existsSync, readFileSync, statSync } from 'node:fs';
+import { createReadStream, existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { extname, join, normalize, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -154,7 +154,26 @@ function sendJson(res, statusCode, body) {
   res.end(JSON.stringify(body));
 }
 
-function handleApiRoute(req, res, pathname) {
+async function parseBody(req) {
+  return new Promise((res) => {
+    let raw = '';
+    req.on('data', chunk => { raw += chunk; });
+    req.on('end', () => {
+      try { res(raw ? JSON.parse(raw) : {}); }
+      catch { res({}); }
+    });
+  });
+}
+
+function saveLiveDataset(data) {
+  try {
+    writeFileSync(dataFilePath, JSON.stringify(data, null, 2), 'utf8');
+  } catch (e) {
+    console.warn('Could not write admin-data.json:', e);
+  }
+}
+
+async function handleApiRoute(req, res, pathname) {
   if (req.method === 'OPTIONS') {
     res.writeHead(204, {
       'access-control-allow-origin': '*',
@@ -215,16 +234,92 @@ function handleApiRoute(req, res, pathname) {
     return true;
   }
 
+  // 7. Supporter Members (Public Registration & Sign In)
+  if (pathname === '/api/public/members' || pathname === '/api/members') {
+    if (req.method === 'GET') {
+      const all = data.members || [];
+      sendJson(res, 200, {
+        totalMembers: all.length,
+        tiers: {
+          yellow: all.filter(m => m.tier === 'yellow').length,
+          silver: all.filter(m => m.tier === 'silver').length,
+          gold: all.filter(m => m.tier === 'gold').length,
+        },
+        members: all.map(({ passwordHash, ...m }) => m)
+      });
+      return true;
+    }
+    if (req.method === 'POST') {
+      const b = await parseBody(req);
+      const action = b.action || 'register';
+      if (action === 'login') {
+        const cred = (b.credential || '').toLowerCase().trim();
+        const found = (data.members || []).find(m =>
+          String(m.id).toLowerCase() === cred ||
+          (m.email && m.email.toLowerCase() === cred) ||
+          (m.phone && m.phone === cred)
+        );
+        if (found) {
+          sendJson(res, 200, { success: true, member: found });
+          return true;
+        }
+        sendJson(res, 404, { error: 'Member not found' });
+        return true;
+      }
+      // Register
+      const { fullName, email, phone, tier = 'yellow', district = 'Dedza', favoritePlayer = '' } = b;
+      if (!fullName || !fullName.trim()) {
+        sendJson(res, 400, { error: 'Full name is required.' });
+        return true;
+      }
+      if (!email && !phone) {
+        sendJson(res, 400, { error: 'Email or phone number is required.' });
+        return true;
+      }
+      const existing = (data.members || []).find(m =>
+        (email && m.email && m.email.toLowerCase() === email.toLowerCase().trim()) ||
+        (phone && m.phone && m.phone === phone.trim())
+      );
+      if (existing) {
+        sendJson(res, 200, {
+          success: true,
+          message: 'Welcome back! You are already registered.',
+          member: existing,
+          isExisting: true
+        });
+        return true;
+      }
+      const randomDigits = Math.floor(1000 + Math.random() * 9000);
+      const newMember = {
+        id: `DD-2026-${randomDigits}`,
+        fullName: fullName.trim(),
+        email: (email || '').trim().toLowerCase(),
+        phone: (phone || '').trim(),
+        tier: ['yellow', 'silver', 'gold'].includes(tier) ? tier : 'yellow',
+        district: district.trim() || 'Dedza',
+        favoritePlayer: favoritePlayer.trim() || 'Clement Nyondo',
+        status: 'active',
+        notificationPref: 'whatsapp',
+        joinedAt: new Date().toISOString(),
+      };
+      if (!data.members) data.members = [];
+      data.members.unshift(newMember);
+      saveLiveDataset(data);
+      sendJson(res, 201, { member: newMember, success: true });
+      return true;
+    }
+  }
+
   return false;
 }
 
-createServer((request, response) => {
+createServer(async (request, response) => {
   const urlObj = new URL(request.url || '/', `http://${request.headers.host || '127.0.0.1'}`);
   const requestPath = decodeURIComponent(urlObj.pathname);
 
   // Serve live REST API
   if (requestPath.startsWith('/api/')) {
-    const handled = handleApiRoute(request, response, requestPath);
+    const handled = await handleApiRoute(request, response, requestPath);
     if (handled) return;
   }
 

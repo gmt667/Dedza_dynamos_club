@@ -123,14 +123,15 @@ const defaultData = {
 
 // Load saved data or initialize
 let data = defaultData;
-try {
-  if (existsSync(dataFilePath)) {
-    data = JSON.parse(readFileSync(dataFilePath, 'utf8'));
-    if (!data.members) data.members = defaultData.members;
-  }
-} catch {
-  data = defaultData;
+function refreshData() {
+  try {
+    if (existsSync(dataFilePath)) {
+      data = JSON.parse(readFileSync(dataFilePath, 'utf8'));
+      if (!data.members) data.members = defaultData.members;
+    }
+  } catch {}
 }
+refreshData();
 
 function saveData() {
   try {
@@ -163,6 +164,7 @@ async function parseBody(req) {
 }
 
 async function handleApi(req, res, pathname) {
+  refreshData();
   if (req.method === 'OPTIONS') {
     res.writeHead(204, {
       'access-control-allow-origin': '*',

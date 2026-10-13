@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="The story, history, stadium and governance of Dedza Dynamos Football Club.">
+  <title>Club &amp; History | Dedza Dynamos</title>
+  <link rel="icon" href="/assets/brand/dedza-dynamos-crest.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/brand.css">
+  <style>
+    .history-panel {
+      transition: opacity .25s ease-in-out;
+    }
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .leader-card {
+      background: #fff;
+      border: 1px solid var(--line, #e2e4dc);
+      border-radius: 10px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+    .leader-role {
+      font-size: .78rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--yellow-dark, #b79700);
+      letter-spacing: .06em;
+    }
+    .leader-name {
+      font-family: var(--display, sans-serif);
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .leader-desc {
+      font-size: .85rem;
+      color: #666;
+      line-height: 1.45;
+      margin: 0;
+    }
+    @media(max-width: 820px) {
+      .leadership-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="utility">
+    <span>Goshen City Dedza Dynamos</span>
+    <div class="utility-links">
+      <a href="/supporters/">Fan support</a>
+      <a href="#stadium">Dedza Stadium</a>
+    </div>
+  </div>
+
+  <header class="site-head">
+    <a class="brand" href="/">
+      <span class="mark"><img src="/assets/brand/dedza-dynamos-crest.png" alt="Dedza Dynamos Crest"></span>
+      <span class="brand-copy"><strong>Dedza<br>Dynamos</strong><small>The Yellow Boys</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Main"></nav>
+    <div class="head-actions">
+      <button class="search-button" data-search aria-label="Search">
+        <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#search"></use></svg>
+      </button>
+      <button class="menu-button" aria-label="Open menu" aria-expanded="false">
+        <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#menu"></use></svg>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-nav" aria-label="Mobile"></nav>
+
+  <main>
+    <section class="page-hero with-image">
+      <img src="/assets/dedza-team-history.jpg" alt="Historic Dedza team lineup">
+      <span class="crumbs"><a href="/">Home</a> / Club</span>
+      <div class="page-hero-content">
+        <p class="eyebrow">Black. Yellow. Dedza.</p>
+        <h1>Our club</h1>
+        <p>A football institution proudly rooted in Dedza District and competing in Malawi's elite division.</p>
+      </div>
+    </section>
+
+    <!-- CLUB HISTORY SECTION WITH INTERACTIVE MILESTONE NAV -->
+    <section class="shell">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Club history</p>
+          <h2>A proud journey to the top flight</h2>
+        </div>
+        <p>Explore the defining milestones that shaped the Yellow Boys from founding to national cup finalists.</p>
+      </div>
+
+      <div class="history-grid">
+        <div class="history-nav" id="history-nav" role="tablist">
+          <button class="active" data-year="2017" role="tab" aria-selected="true">2017</button>
+          <button data-year="2021" role="tab" aria-selected="false">2021</button>
+          <button data-year="2022" role="tab" aria-selected="false">2022</button>
+          <button data-year="2023" role="tab" aria-selected="false">2023</button>
+          <button data-year="2026" role="tab" aria-selected="false">2026</button>
+        </div>
+        <article class="history-panel" id="history-panel">
+          <p class="kicker" id="hist-kicker">2017</p>
+          <h2 id="hist-title">The beginning</h2>
+          <p id="hist-desc">Dedza Dynamos Football Club was founded in Dedza, Central Region of Malawi, establishing football excellence, youth development, and district pride.</p>
+        </article>
+      </div>
+
+      <div class="notice">
+        Official dates, honours, player statistics, and commercial partnerships are documented from club records and Super League of Malawi (SULOM) archives.
+      </div>
+    </section>
+
+    <!-- STADIUM SECTION -->
+    <section class="promo-row" id="stadium">
+      <div class="promo-copy">
+        <p class="kicker">Our home fortress</p>
+        <h2 class="feature-title">Dedza Stadium</h2>
+        <p>SULOM designates Dedza Stadium as the club's official home ground with an estimated 10,000 spectator capacity. High in the central highlands, the venue has built a formidable reputation as one of the toughest away fixtures in Malawian football.</p>
+        <span>Club record</span>
+      </div>
+      <div class="promo-photo">
+        <img src="/assets/dedza-action.jpg" alt="Football action at Dedza Stadium">
+      </div>
+    </section>
+
+    <!-- LEADERSHIP & GOVERNANCE -->
+    <section class="shell" id="leadership">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Governance</p>
+          <h2>Club leadership &amp; administration</h2>
+        </div>
+        <p>The reported executive leadership driving sporting operations, community integration, and club growth.</p>
+      </div>
+
+      <div class="leadership-grid">
+        <div class="leader-card">
+          <div class="leader-card-header">
+            <img src="/assets/brand/dedza-dynamos-crest.png" alt="Dedza Dynamos Official Crest" class="leader-crest">
+            <div>
+              <span class="leader-role">Executive Board</span>
+              <h3 class="leader-name">Paul Mzungu</h3>
+            </div>
+          </div>
+          <p class="leader-desc">Executive Board Chairman guiding strategic direction, corporate partnerships, and sporting excellence.</p>
+        </div>
+
+        <div class="leader-card">
+          <div class="leader-card-header">
+            <img src="/assets/brand/dedza-dynamos-crest.png" alt="Dedza Dynamos Official Crest" class="leader-crest">
+            <div>
+              <span class="leader-role">Club Secretariat</span>
+              <h3 class="leader-name">Executive Committee</h3>
+            </div>
+          </div>
+          <p class="leader-desc">A nine-member board overseeing finance, logistics, player welfare, and community initiatives across Dedza District.</p>
+        </div>
+
+        <div class="leader-card">
+          <div class="leader-card-header">
+            <img src="/assets/brand/dedza-dynamos-crest.png" alt="Dedza Dynamos Official Crest" class="leader-crest">
+            <div>
+              <span class="leader-role">Technical &amp; Team Operations</span>
+              <h3 class="leader-name">Coaching Staff</h3>
+            </div>
+          </div>
+          <p class="leader-desc">Technical bench managing tactical development, training conditioning, and youth squad scouting.</p>
+        </div>
+      </div>
+
+      <div class="notice">
+        For official club correspondence, media inquiries, or corporate sponsorship opportunities, visit our <a href="/contact/">contact page</a>.
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="mark"><img src="/assets/brand/dedza-dynamos-crest.png" alt="Dedza Dynamos Crest"></span>
+        <div><strong>Dedza Dynamos</strong><small>Dedza, Malawi</small></div>
+      </div>
+      <div class="footer-columns">
+        <div>
+          <strong>Football</strong>
+          <a href="/matches/">Fixtures</a>
+          <a href="/competitions/">Tables &amp; cups</a>
+        </div>
+        <div>
+          <strong>Club</strong>
+          <a href="/news/">News</a>
+          <a href="/contact/">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Dedza Dynamos Football Club</span>
+      <span>Official club information portal</span>
+    </div>
+  </footer>
+
+  <div class="site-search">
+    <button class="search-close" aria-label="Close search">
+      <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#close"></use></svg>
+    </button>
+    <label for="site-search">Search Dedza Dynamos</label>
+    <input id="site-search" type="search">
+    <div class="search-results"></div>
+  </div>
+
+  <div class="toast" role="status"></div>
+  <script src="/app.js"></script>
+  <script src="/live-data.js" defer></script>
+  <script>
+    // Interactive History Timeline switcher
+    (function () {
+      const milestones = {
+        '2017': {
+          kicker: '2017 · Club Founding',
+          title: 'The beginning',
+          desc: 'Dedza Dynamos Football Club was founded in Dedza, Central Region of Malawi, establishing football excellence, youth development, and district pride.'
+        },
+        '2021': {
+          kicker: '2021 · Landmark Promotion',
+          title: 'Promotion to the top flight',
+          desc: 'A historic championship campaign in the regional tier earned the Yellow Boys official promotion to the Super League of Malawi (SULOM) for the first time.'
+        },
+        '2022': {
+          kicker: '2022 · Elite Division Debut',
+          title: 'Making a mark in the Super League',
+          desc: 'In their debut top-flight campaign, Dedza Dynamos established Dedza Stadium as one of the most formidable home grounds in the country, defying pre-season relegation odds.'
+        },
+        '2023': {
+          kicker: '2023 · National Recognition',
+          title: 'Golden Boot triumph',
+          desc: 'Prolific forward Clement Nyondo concluded a sensational individual campaign with a reported 16 goals, becoming the top goalscorer in the national league.'
+        },
+        '2026': {
+          kicker: '2026 · Cup Finalists & New Era',
+          title: 'First national cup final',
+          desc: 'Dedza Dynamos reached their first national cup final at Bingu National Stadium against Big Bullets in the Castel Challenge Cup, alongside reported executive leadership under Chairman Paul Mzungu.'
+        }
+      };
+
+      const nav = document.getElementById('history-nav');
+      const panel = document.getElementById('history-panel');
+      const kickerEl = document.getElementById('hist-kicker');
+      const titleEl = document.getElementById('hist-title');
+      const descEl = document.getElementById('hist-desc');
+
+      if (nav && panel) {
+        nav.addEventListener('click', (e) => {
+          const btn = e.target.closest('button[data-year]');
+          if (!btn) return;
+          const year = btn.dataset.year;
+          const data = milestones[year];
+          if (!data) return;
+
+          nav.querySelectorAll('button').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+
+          panel.style.opacity = '0';
+          setTimeout(() => {
+            if (kickerEl) kickerEl.textContent = data.kicker;
+            if (titleEl) titleEl.textContent = data.title;
+            if (descEl) descEl.textContent = data.desc;
+            panel.style.opacity = '1';
+          }, 150);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1791382458302,
+      "tag": "0000_colorful_killer_shrike",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1728381660000,
+      "tag": "0001_add_players",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1791458320005,
+      "tag": "0002_dapper_shiver_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1791474137818,
+      "tag": "0003_pale_agent_zero",
+      "breakpoints": true
+    }
+  ]
+}
