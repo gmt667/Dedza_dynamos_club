@@ -18,7 +18,7 @@
 .portal-tab-btn {
   background: transparent;
   border: 0;
-  font-family: var(--display, "Archivo Black", sans-serif);
+  font-family: var(--display, 'Outfit', sans-serif);
   font-size: 1.05rem;
   text-transform: uppercase;
   letter-spacing: .03em;
@@ -271,7 +271,7 @@
 }
 
 .card-member-id {
-  font-family: var(--display, "Archivo Black", monospace);
+  font-family: var(--display, 'Outfit', sans-serif);
   font-size: 1.4rem;
   letter-spacing: .12em;
   color: #fff;

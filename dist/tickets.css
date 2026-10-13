@@ -59,7 +59,7 @@
   margin-bottom: 1.2rem;
 }
 .tickets-hero h1 {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: clamp(2rem, 4.2vw, 3.2rem);
   line-height: 1.1;
   text-transform: uppercase;
@@ -80,7 +80,7 @@
   margin-bottom: 3.5rem;
 }
 .section-headline {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: 1.5rem;
   text-transform: uppercase;
   letter-spacing: -0.02em;
@@ -121,7 +121,7 @@
   margin-bottom: 1rem;
 }
 .channel-brand-badge {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: 1.1rem;
   color: var(--dd-navy);
   display: flex;
@@ -251,7 +251,7 @@
   object-fit: contain;
 }
 .fixture-match-title {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: 1.2rem;
   text-transform: uppercase;
   color: var(--dd-navy);
@@ -324,7 +324,7 @@
   padding-bottom: 1rem;
 }
 .ticket-modal-head h2 {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: 1.3rem;
   text-transform: uppercase;
 }
@@ -423,7 +423,7 @@
   margin-bottom: 1.2rem;
 }
 .eticket-head strong {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   color: var(--dd-gold);
   font-size: 1.1rem;
   text-transform: uppercase;

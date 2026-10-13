@@ -64,7 +64,7 @@
   margin-bottom: 1.2rem;
 }
 .shop-hero h1 {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: clamp(2rem, 4.5vw, 3.4rem);
   line-height: 1.08;
   text-transform: uppercase;
@@ -241,7 +241,7 @@
   margin-bottom: .35rem;
 }
 .product-title {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: 1.15rem;
   text-transform: uppercase;
   color: var(--dd-navy);
@@ -264,13 +264,13 @@
   border-top: 1px solid #f1f5f9;
 }
 .product-price {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: 1.35rem;
   color: var(--dd-navy);
 }
 .product-price small {
   font-size: .75rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--body, sans-serif);
   font-weight: 600;
   color: var(--dd-muted);
   margin-right: .2rem;
@@ -396,7 +396,7 @@
   justify-content: space-between;
 }
 .cart-header h2 {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: 1.15rem;
   text-transform: uppercase;
 }
@@ -441,7 +441,7 @@
   flex: 1;
 }
 .cart-item-title {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: .88rem;
   text-transform: uppercase;
   margin-bottom: .2rem;
@@ -507,7 +507,7 @@
   color: var(--dd-muted);
 }
 .cart-total-price {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: 1.5rem;
   color: var(--dd-navy);
 }
@@ -567,7 +567,7 @@
   position: relative;
 }
 .checkout-modal h2 {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--display, sans-serif);
   font-size: 1.3rem;
   text-transform: uppercase;
   margin-bottom: .4rem;

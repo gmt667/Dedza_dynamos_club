@@ -106,13 +106,16 @@
     const feature = document.querySelector('.news-feature');
     if (!grid) return;
 
-    const data = await apiFetch('/api/public/updates');
-    if (!data || !data.updates || !data.updates.length) {
+    const [clubData, feedData] = await Promise.all([apiFetch('/api/public/updates'), apiFetch('/api/public/news')]);
+    const clubUpdates = clubData?.updates || [];
+    const fetchedNews = feedData?.news || [];
+    const combined = [...clubUpdates, ...fetchedNews].sort((a, b) => String(b.publishedAt || b.createdAt || '').localeCompare(String(a.publishedAt || a.createdAt || '')));
+    if (!combined.length) {
       // Keep pre-rendered HTML intact if no API response
       return;
     }
 
-    const [featured, ...rest] = data.updates;
+    const [featured, ...rest] = combined;
 
     // Replace feature article dynamically
     if (feature && featured) {
@@ -206,10 +209,10 @@
       byMonth[key].push(m);
     });
 
-    const checkedDate = data.source?.checkedAt ? fmtDate(data.source.checkedAt) : new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-    const sourceNote = data.source ? `<div class="live-source-status">
+    const checkedDate = data.freshness?.checkedAt ? fmtDate(data.freshness.checkedAt) : new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    const sourceNote = data.freshness ? `<div class="live-source-status">
       <span><strong>Official live data</strong> · Checked ${checkedDate}</span>
-      <a href="${escHtml(data.source.clubUrl || 'https://sulommw.com')}" target="_blank" rel="noopener">View SULOM source</a>
+      <span>Club match centre</span>
     </div>` : '';
 
     container.innerHTML = sourceNote + Object.entries(byMonth).map(([monthKey, matches]) => {
@@ -468,7 +471,7 @@
     const status = document.querySelector('#premiership .competition-status');
     if (status && data.dedza) status.textContent = `2026/27 · after ${data.dedza.played} matches`;
     const sourceNote = document.querySelector('#premiership .source-note');
-    if (sourceNote && data.source) sourceNote.innerHTML = `Live official standings checked ${fmtDate(data.source.checkedAt)}. Source: <a href="${escHtml(data.source.tableUrl || 'https://sulommw.com')}" target="_blank" rel="noopener">Super League of Malawi</a>.`;
+    if (sourceNote && data.freshness) sourceNote.textContent = `Latest verified standings updated ${fmtDate(data.freshness.checkedAt)}.`;
   }
 
   function ordinalSuffix(value) {
