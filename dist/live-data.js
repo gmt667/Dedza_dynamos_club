@@ -372,6 +372,25 @@
     </article>`;
   }
 
+  // VIDEO CLIP LIBRARY
+  async function loadVideoPage() {
+    const grid = document.querySelector('[data-video-grid]');
+    if (!grid) return;
+    const data = await apiFetch('/api/public/media?type=video&limit=100');
+    const clips = data?.media || [];
+    if (!clips.length) return;
+    const absoluteMediaUrl = (url) => url.startsWith('/api/public/') ? PUBLIC_API + url : url;
+    const render = (filter = 'all') => {
+      const visible = filter === 'all' ? clips : clips.filter((clip) => clip.category === filter);
+      grid.innerHTML = visible.length ? visible.map((clip) => `<article class="clip-card"><div class="clip-player"><video controls preload="metadata" playsinline${clip.thumbnailUrl ? ` poster="${escHtml(clip.thumbnailUrl)}"` : ''}><source src="${escHtml(absoluteMediaUrl(clip.url))}">Your browser cannot play this video.</video></div><div class="clip-copy"><span class="clip-category">${escHtml(clip.category || 'club')}</span><h2>${escHtml(clip.title)}</h2><span class="meta">${fmtDate(clip.date || clip.createdAt)}</span></div></article>`).join('') : '<div class="empty-clips"><h2>No clips in this category yet</h2></div>';
+    };
+    render();
+    document.querySelectorAll('[data-video-filter]').forEach((button) => button.addEventListener('click', () => {
+      document.querySelectorAll('[data-video-filter]').forEach((item) => item.classList.remove('active'));
+      button.classList.add('active'); render(button.dataset.videoFilter);
+    }));
+  }
+
   // ── HOMEPAGE ─────────────────────────────────────────────────────────────────
   async function loadHomePage() {
     // Homepage layout: .card-grid inside section.shell (#main), .next-match and .latest-result inside .score-strip
@@ -534,6 +553,8 @@
     loadPartnersPage();
   } else if (path.startsWith('/competitions')) {
     loadCompetitionsPage();
+  } else if (path.startsWith('/video')) {
+    loadVideoPage();
   }
 
   // ── GLOBAL LIVE TICKER IN UTILITY BAR ──────────────────────────────────────
