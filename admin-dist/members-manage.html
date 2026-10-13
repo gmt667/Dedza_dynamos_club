@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Supporter Members · Dedza Dynamos Admin</title>
+  <link rel="icon" href="/assets/brand/dedza-dynamos-crest.png">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin.css">
+  <meta name="robots" content="noindex,nofollow">
+</head>
+<body class="admin-page">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <img src="/assets/brand/dedza-dynamos-crest.png" alt="" class="sidebar-crest">
+      <div><strong>Dedza Dynamos</strong><small>Admin Panel</small></div>
+      <button class="sidebar-close" id="sidebar-close" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="sidebar-nav" aria-label="Admin navigation">
+      <a href="/dashboard.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="/news-manage.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+        <span>News &amp; Stories</span>
+      </a>
+      <a href="/matches-manage.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><circle cx="12" cy="16" r="2"/></svg>
+        <span>Fixtures &amp; Results</span>
+      </a>
+      <a href="/team-manage.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Team &amp; Players</span>
+      </a>
+      <a href="/media-manage.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Media</span>
+      </a>
+      <a href="/partners-manage.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        <span>Partners</span>
+      </a>
+      <a href="/members-manage.html" class="nav-link active">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Supporter Members</span>
+      </a>
+      <a href="/settings.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Settings</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <span class="sidebar-user" id="sidebar-user">–</span>
+      <a href="http://127.0.0.1:4173/" target="_blank" class="view-site-btn">View Public Site ↗</a>
+      <button id="logout-btn" class="logout-btn">Sign out</button>
+    </div>
+  </aside>
+  <div class="admin-main" id="admin-main">
+    <header class="topbar">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+      <div class="topbar-title"><h1>Supporter Members</h1><span class="topbar-sub">Registered fan members and club supporters</span></div>
+      <div class="topbar-actions">
+        <button class="btn-primary" id="add-member-btn" style="display:inline-flex;align-items:center;gap:.4rem">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add member
+        </button>
+        <div class="topbar-avatar" id="topbar-avatar">A</div>
+      </div>
+    </header>
+    <div class="admin-content">
+
+      <!-- FILTER / STAT BAR -->
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:1.5rem">
+        <div style="flex:1;min-width:220px">
+          <input type="text" id="member-search" placeholder="Search by name, email, phone, ID..." style="width:100%;padding:.6rem .9rem;border:1px solid var(--border,#ddd);border-radius:6px;background:#fff;font-size:.85rem">
+        </div>
+        <select id="member-tier-filter" style="padding:.6rem .9rem;border:1px solid var(--border,#ddd);border-radius:6px;background:#fff;font-size:.85rem">
+          <option value="all">All Tiers</option>
+          <option value="gold">Gold VIP</option>
+          <option value="silver">Silver Supporter</option>
+          <option value="yellow">Yellow Supporter (Free)</option>
+        </select>
+        <span class="badge-pill" id="member-count-badge" style="padding:.5rem .9rem;background:var(--yellow,#f4c900);color:#111;font-weight:700;border-radius:20px;font-size:.78rem">Loading members...</span>
+      </div>
+
+      <!-- MODAL -->
+      <div class="modal-overlay" id="member-modal" hidden style="display:none">
+        <div class="modal-card">
+          <div class="modal-head">
+            <h2 id="modal-title">Add Supporter Member</h2>
+            <button class="modal-close" id="member-modal-close">✕</button>
+          </div>
+          <form class="story-form" id="member-form">
+            <div class="form-field">
+              <label>Full Name *</label>
+              <input type="text" id="mem-name" required placeholder="e.g. Chimwemwe Banda">
+            </div>
+            <div class="form-field">
+              <label>Email Address *</label>
+              <input type="email" id="mem-email" required placeholder="e.g. member@email.com">
+            </div>
+            <div class="form-field">
+              <label>Phone Number (Malawi)</label>
+              <input type="tel" id="mem-phone" placeholder="e.g. +265 888 123 456">
+            </div>
+            <div class="form-field">
+              <label>Membership Tier</label>
+              <select id="mem-tier">
+                <option value="yellow">Yellow Supporter (Free Fan)</option>
+                <option value="silver">Silver Supporter (MWK 15,000/yr)</option>
+                <option value="gold">Gold VIP Member (MWK 35,000/yr)</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>District / City</label>
+              <input type="text" id="mem-district" placeholder="Dedza">
+            </div>
+            <div class="form-field">
+              <label>Favorite Player</label>
+              <input type="text" id="mem-player" placeholder="e.g. Clement Nyondo">
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn-ghost" id="member-modal-cancel">Cancel</button>
+              <button type="submit" class="btn-primary">Save Member</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MEMBERS TABLE -->
+      <div class="dash-panel">
+        <div class="panel-head">
+          <h2>Registered Supporter Members</h2>
+          <span class="badge-pill">Live Database</span>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="admin-table" id="members-table">
+            <thead>
+              <tr>
+                <th>Member ID</th>
+                <th>Full Name</th>
+                <th>Contact</th>
+                <th>District</th>
+                <th>Tier</th>
+                <th>Fav Player</th>
+                <th>Status</th>
+                <th>Joined</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="members-tbody">
+              <tr><td colspan="9" style="text-align:center;padding:2rem;color:#888">Loading supporter members...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="admin-toast" id="admin-toast"></div>
+  <script src="/admin-api.js"></script>
+  <script src="/admin-app.js"></script>
+  <script>
+    const mModal = document.getElementById('member-modal');
+    const mBody = document.getElementById('members-tbody');
+    const searchInput = document.getElementById('member-search');
+    const tierFilter = document.getElementById('member-tier-filter');
+    const countBadge = document.getElementById('member-count-badge');
+    let allMembers = [];
+
+    const tierBadges = {
+      gold: '<span class="badge" style="background:#b79700;color:#fff;font-weight:700">🥇 Gold VIP</span>',
+      silver: '<span class="badge" style="background:#8a8d87;color:#fff;font-weight:700">🥈 Silver</span>',
+      yellow: '<span class="badge" style="background:#f4c900;color:#111;font-weight:700">🟡 Yellow</span>',
+    };
+
+    function renderTable() {
+      const q = (searchInput?.value || '').trim().toLowerCase();
+      const selectedTier = tierFilter?.value || 'all';
+
+      const filtered = allMembers.filter(m => {
+        const matchesQuery = !q ||
+          (m.fullName && m.fullName.toLowerCase().includes(q)) ||
+          (m.email && m.email.toLowerCase().includes(q)) ||
+          (m.phone && m.phone.toLowerCase().includes(q)) ||
+          (m.id && m.id.toLowerCase().includes(q)) ||
+          (m.district && m.district.toLowerCase().includes(q));
+
+        const matchesTier = selectedTier === 'all' || m.tier === selectedTier;
+        return matchesQuery && matchesTier;
+      });
+
+      if (countBadge) {
+        countBadge.textContent = `${filtered.length} member${filtered.length === 1 ? '' : 's'}`;
+      }
+
+      if (!filtered.length) {
+        mBody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:2rem;color:#888">No matching supporter members found.</td></tr>';
+        return;
+      }
+
+      mBody.innerHTML = filtered.map(m => `
+        <tr>
+          <td><strong style="font-family:var(--display,monospace);color:#111">${m.id}</strong></td>
+          <td><strong>${m.fullName || 'Supporter'}</strong></td>
+          <td>
+            <div style="font-size:.82rem">${m.email || '–'}</div>
+            <div style="font-size:.75rem;color:#666">${m.phone || '–'}</div>
+          </td>
+          <td>${m.district || 'Dedza'}</td>
+          <td>${tierBadges[m.tier] || m.tier}</td>
+          <td style="font-size:.82rem;color:#555">${m.favoritePlayer || '–'}</td>
+          <td><span class="badge published">${m.status || 'Active'}</span></td>
+          <td style="font-size:.78rem;color:#777">${(m.joinedAt || '').slice(0, 10) || '2026-10-12'}</td>
+          <td>
+            <button class="tbl-btn danger" style="padding:.2rem .5rem;font-size:.7rem" onclick="deleteMemberItem('${m.id}')">Delete</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadMembers() {
+      try {
+        allMembers = await window.AdminAPI.getMembers();
+        renderTable();
+      } catch (err) {
+        console.warn('Error loading members:', err);
+        mBody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:2rem;color:#c00">Failed to load members from server.</td></tr>';
+      }
+    }
+
+    window.deleteMemberItem = async function(id) {
+      if (!confirm(`Are you sure you want to remove member ${id}?`)) return;
+      try {
+        await window.AdminAPI.deleteMember(id);
+        allMembers = allMembers.filter(m => m.id !== id);
+        renderTable();
+        adminToast('Member deleted ✓');
+      } catch (err) {
+        adminToast('Error removing member: ' + err.message);
+      }
+    };
+
+    searchInput?.addEventListener('input', renderTable);
+    tierFilter?.addEventListener('change', renderTable);
+
+    document.getElementById('add-member-btn')?.addEventListener('click', () => {
+      document.getElementById('mem-name').value = '';
+      document.getElementById('mem-email').value = '';
+      document.getElementById('mem-phone').value = '';
+      document.getElementById('mem-district').value = 'Dedza';
+      document.getElementById('mem-player').value = '';
+      mModal.classList.add('is-open'); mModal.hidden = false; mModal.style.display = 'flex';
+    });
+
+    document.getElementById('member-modal-close')?.addEventListener('click', () => {
+      mModal.classList.remove('is-open'); mModal.hidden = true; mModal.style.display = 'none';
+    });
+    document.getElementById('member-modal-cancel')?.addEventListener('click', () => {
+      mModal.classList.remove('is-open'); mModal.hidden = true; mModal.style.display = 'none';
+    });
+
+    document.getElementById('member-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fullName = document.getElementById('mem-name').value.trim();
+      const email = document.getElementById('mem-email').value.trim();
+      const phone = document.getElementById('mem-phone').value.trim();
+      const tier = document.getElementById('mem-tier').value;
+      const district = document.getElementById('mem-district').value.trim() || 'Dedza';
+      const favoritePlayer = document.getElementById('mem-player').value.trim();
+
+      if (!fullName || !email) {
+        adminToast('Please provide full name and email.');
+        return;
+      }
+
+      try {
+        const created = await window.AdminAPI.createMember({
+          fullName, email, phone, tier, district, favoritePlayer, status: 'active'
+        });
+        mModal.classList.remove('is-open'); mModal.hidden = true; mModal.style.display = 'none';
+        adminToast('Member added successfully ✓');
+        await loadMembers();
+      } catch (err) {
+        adminToast('Error creating member: ' + err.message);
+      }
+    });
+
+    loadMembers();
+  </script>
+</body>
+</html>

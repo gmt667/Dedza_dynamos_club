@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Media Gallery · Dedza Dynamos Admin</title>
+  <link rel="icon" href="/assets/brand/dedza-dynamos-crest.png">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin.css">
+  <meta name="robots" content="noindex,nofollow">
+</head>
+<body class="admin-page">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <img src="/assets/brand/dedza-dynamos-crest.png" alt="" class="sidebar-crest">
+      <div><strong>Dedza Dynamos</strong><small>Admin Panel</small></div>
+      <button class="sidebar-close" id="sidebar-close" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="sidebar-nav" aria-label="Admin navigation">
+      <a href="/dashboard.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="/news-manage.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+        <span>News &amp; Stories</span>
+      </a>
+      <a href="/matches-manage.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><circle cx="12" cy="16" r="2"/></svg>
+        <span>Fixtures &amp; Results</span>
+      </a>
+      <a href="/team-manage.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Team &amp; Players</span>
+      </a>
+      <a href="/media-manage.html" class="nav-link active">
+        <svg class="nav-icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Media</span>
+      </a>
+      <a href="/partners-manage.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        <span>Partners</span>
+      </a>
+      <a href="/members-manage.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Supporter Members</span>
+      </a>
+      <a href="/settings.html" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Settings</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <span class="sidebar-user" id="sidebar-user">–</span>
+      <a href="http://127.0.0.1:4173/" target="_blank" class="view-site-btn">View Public Site ↗</a>
+      <button id="logout-btn" class="logout-btn">Sign out</button>
+    </div>
+  </aside>
+  <div class="admin-main" id="admin-main">
+    <header class="topbar">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+      <div class="topbar-title"><h1>Media Gallery</h1><span class="topbar-sub">Manage photos &amp; matchday albums</span></div>
+      <div class="topbar-actions">
+        <button class="btn-primary" id="upload-media-btn" style="display:inline-flex;align-items:center;gap:.4rem">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Upload media
+        </button>
+        <div class="topbar-avatar" id="topbar-avatar">A</div>
+      </div>
+    </header>
+    <div class="admin-content">
+
+      <!-- MODAL -->
+      <div class="modal-overlay" id="media-modal" hidden style="display:none">
+        <div class="modal-card">
+          <div class="modal-head">
+            <h2>Upload photo</h2>
+            <button class="modal-close" id="media-modal-close">✕</button>
+          </div>
+          <form class="story-form" id="media-form">
+            <div class="form-field">
+              <label>Caption / Title</label>
+              <input type="text" id="med-title" placeholder="e.g. Squad training session ahead of Masters FC">
+            </div>
+            <div class="form-field">
+              <label>Image URL or File Path</label>
+              <input type="text" id="med-url" placeholder="/assets/gallery/match-01.jpg">
+            </div>
+            <div class="form-field">
+              <label>Category</label>
+              <select id="med-cat">
+                <option>Match Action</option>
+                <option>Training</option>
+                <option>Fans & Stadium</option>
+                <option>Squad Portraits</option>
+              </select>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn-ghost" id="media-modal-cancel">Cancel</button>
+              <button type="submit" class="btn-primary">Save media</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="dash-panel">
+        <div class="panel-head">
+          <h2>Photo assets</h2>
+          <span class="badge-pill">6 photos in gallery</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem">
+          <div class="player-admin-card" style="border-top-color:var(--yellow)">
+            <strong>Dedza Stadium matchday</strong>
+            <p style="font-size:.78rem;color:#666">FDH Premiership vs Mighty Wanderers</p>
+            <span class="badge published">Live</span>
+          </div>
+          <div class="player-admin-card" style="border-top-color:var(--yellow)">
+            <strong>Castel Cup Final celebrations</strong>
+            <p style="font-size:.78rem;color:#666">Silver Stadium, Lilongwe</p>
+            <span class="badge published">Live</span>
+          </div>
+          <div class="player-admin-card" style="border-top-color:var(--yellow)">
+            <strong>Pre-season team training</strong>
+            <p style="font-size:.78rem;color:#666">Dedza training ground</p>
+            <span class="badge published">Live</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="admin-toast" id="admin-toast"></div>
+  <script src="/admin-api.js"></script>
+  <script src="/admin-app.js"></script>
+  <script>
+    const mModal = document.getElementById('media-modal');
+    document.getElementById('upload-media-btn')?.addEventListener('click', () => {
+      mModal.classList.add('is-open'); mModal.hidden = false; mModal.style.display = 'flex';
+    });
+    document.getElementById('media-modal-close')?.addEventListener('click', () => {
+      mModal.classList.remove('is-open'); mModal.hidden = true; mModal.style.display = 'none';
+    });
+    document.getElementById('media-modal-cancel')?.addEventListener('click', () => {
+      mModal.classList.remove('is-open'); mModal.hidden = true; mModal.style.display = 'none';
+    });
+    document.getElementById('media-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      mModal.classList.remove('is-open'); mModal.hidden = true; mModal.style.display = 'none';
+      adminToast('Photo saved ✓');
+    });
+  </script>
+</body>
+</html>
